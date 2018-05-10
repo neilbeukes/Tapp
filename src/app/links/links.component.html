@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <ul class="list-group">
+        <a *ngFor="let application of applications" class="list-group-item list-group-item-action" (click)="selectApplication(application)"
+          [ngClass]="{active: isApplicationSelected(application)}">
+          <b>{{application.name}}</b>
+        </a>
+      </ul>
+      <hr>
+      <ul class="list-group">
+        <a class="list-group-item list-group-item-action" (click)="selectEnv('Dev')" [ngClass]="{active: isEnvSelected('Dev')}">
+          <b>DEV</b>
+        </a>
+        <a class="list-group-item list-group-item-action" (click)="selectEnv('SIT')" [ngClass]="{active: isEnvSelected('SIT')}">
+          <b>SIT</b>
+        </a>
+        <a class="list-group-item list-group-item-action" (click)="selectEnv('UAT')" [ngClass]="{active: isEnvSelected('UAT')}">
+          <b>UAT</b>
+        </a>
+        <a class="list-group-item list-group-item-action" (click)="selectEnv('Prod')" [ngClass]="{active: isEnvSelected('Prod')}">
+          <b>PROD</b>
+        </a>
+      </ul>
+    </div>
+    <div class="col-10">
+      <div class="jumbotron">
+        <form>
+          <h4 style="padding-bottom: 10px;">
+            <b>{{selectedApplication.name}} - {{selectedEnv}}</b>
+          </h4>
+          <div class="form-group">
+            <ul>
+              <li *ngFor="let link of links">{{link.name}} - <a href="link.url">{{link.url}}</a></li>
+            </ul>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
