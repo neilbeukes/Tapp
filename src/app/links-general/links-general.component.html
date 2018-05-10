@@ -1,0 +1,20 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron">
+        <form>
+          <h4 style="padding-bottom: 10px;">
+            <b>General Links</b>
+          </h4>
+          <div class="form-group">
+            <ul>
+              <li *ngFor="let link of links">{{link.name}} -
+                <a href="link.url">{{link.url}}</a>
+              </li>
+            </ul>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

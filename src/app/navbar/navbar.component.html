@@ -1,19 +1,25 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <a class="navbar-brand navbar-heading" routerLink="">Tapp</a>
-  <button class="navbar-toggler" type="bu tton" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
     aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
+
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav navbar-links">
       <a class="nav-item nav-link active" routerLink="">Home
         <span class="sr-only">(current)</span>
       </a>
       <a class="nav-item nav-link" routerLink="team">Team</a>
-      <a class="nav-item nav-link" routerLink="links">Links</a>
+      <a class="nav-item dropdown" ngbDropdown>
+        <a class="nav-link dropdown-toggle" ngbDropdownToggle id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Links
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown" ngbDropdownMenu>
+          <a class="dropdown-item" routerLink="links/general">General Links</a>
+          <a class="dropdown-item" routerLink="links/dev">Dev Links</a>
+        </div>
+      </a>
     </div>
-    <form class="form-inline my-2 my-lg-0 ml-auto">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Update Status</button>
-    </form>
   </div>
 </nav>
