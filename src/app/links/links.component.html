@@ -1,45 +1,50 @@
 <div class="container mt-5">
-  <div class="row">
-    <div class="col">
-      <ul class="list-group">
-        <a *ngFor="let application of applications" class="list-group-item list-group-item-action" (click)="selectApplication(application)"
-          [ngClass]="{active: isApplicationSelected(application)}">
-          <b>{{application.name}}</b>
-        </a>
-      </ul>
-    </div>
-    <div class="col-10">
-      <div class="card">
-        <div class="card-header">
-          <ul class="nav nav-tabs card-header-tabs">
-            <li class="nav-item">
-              <a class="nav-link" (click)="selectEnv('Prod')" [ngClass]="{active: isEnvSelected('Prod')}">Prod</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="selectEnv('UAT')" [ngClass]="{active: isEnvSelected('UAT')}">UAT</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="selectEnv('SIT')" [ngClass]="{active: isEnvSelected('SIT')}">SIT</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" (click)="selectEnv('Dev')" [ngClass]="{active: isEnvSelected('Dev')}">Dev</a>
-            </li>
-          </ul>
-        </div>
-        <div class="card-body mr-auto">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col">
+        <ul class="list-group">
+          <a *ngFor="let application of applications" class="list-group-item list-group-item-action" (click)="selectApplication(application)"
+            [ngClass]="{active: isApplicationSelected(application)}">
+            <b>{{application.name}}</b>
+          </a>
+        </ul>
+      </div>
+      <div class="col-10">
+        <div class="card">
+          <div class="card-header">
+            <ul class="nav nav-tabs card-header-tabs">
+              <li class="nav-item">
+                <a class="nav-link" (click)="selectEnv('Prod')" [ngClass]="{active: isEnvSelected('Prod')}">Prod</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="selectEnv('UAT')" [ngClass]="{active: isEnvSelected('UAT')}">UAT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="selectEnv('SIT')" [ngClass]="{active: isEnvSelected('SIT')}">SIT</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="selectEnv('Dev')" [ngClass]="{active: isEnvSelected('Dev')}">Dev</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" (click)="selectEnv('Tools')" [ngClass]="{active: isEnvSelected('Tools')}">Tools</a>
+                </li>
+            </ul>
+          </div>
+          <div class="card-body mr-auto">
             <h4 class="card-title" style="padding-bottom: 10px;">
               <b>{{selectedApplication.name}} - {{selectedEnv}}</b>
             </h4>
-              <ul>
-                <li *ngFor="let link of links">
-                  <p class="card-text">{{link.name}} -
-                    <a href="link.url">{{link.url}}</a>
-                  </p>
-                </li>
-              </ul>
+            <ul>
+              <li *ngFor="let link of links">
+                <p class="card-text">{{link.name}} -
+                  <a href="link.url">{{link.url}}</a>
+                </p>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
 
+      </div>
     </div>
   </div>
 </div>
