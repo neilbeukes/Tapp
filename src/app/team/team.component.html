@@ -1,10 +1,10 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="isDataLoaded">
   <div class="row">
     <div class="col">
-      <ul class="list-group">
+      <ul class="list-group team-list">
         <a *ngFor="let employee of employees" class="list-group-item list-group-item-action" (click)="selectEmployee(employee)"
           [ngClass]="{active: isSelected(employee)}">
-          <b>{{employee.name}} {{employee.surname}} </b>
+          <b>{{employee.NAME}} {{employee.SURNAME}} </b>
         </a>
       </ul>
     </div>
@@ -12,18 +12,18 @@
       <div class="jumbotron">
         <form>
           <h4 style="padding-bottom: 10px;">
-            <b>{{selectedEmployee.name}} {{selectedEmployee.surname}}</b>
+            <b>{{selectedEmployee.NAME}} {{selectedEmployee.SURNAME}}</b>
           </h4>
           <div class="form-group">
-            <h5><b>Cell: </b> {{selectedEmployee.number}}</h5>
-            <h5><b>Email: </b> {{selectedEmployee.email}}</h5>
-            <h5><b>Ext: </b> {{selectedEmployee.ext}}</h5>
-            <h5><b>User ID: </b> {{selectedEmployee.userid}}</h5>
-            <h5><b>Birthday: </b> {{selectedEmployee.birthday}}</h5>
-            <h5><b>Next of Kin: </b> {{selectedEmployee.next}}</h5>
-            <h5><b>Number: </b> {{selectedEmployee.nextnumber}}</h5>
-            <h5><b>Location: </b> {{selectedEmployee.location}}</h5>
-            <h5><b>Work from home day: </b> {{selectedEmployee.nextnumber}}</h5>
+            <h5><b>Cell: </b> {{selectedEmployee.CELL}}</h5>
+            <h5><b>Email: </b> {{selectedEmployee.EMAIL}}</h5>
+            <h5><b>Ext: </b> {{selectedEmployee.EXT}}</h5>
+            <h5><b>User ID: </b> {{selectedEmployee.USERID}}</h5>
+            <h5><b>Birthday: </b> {{selectedEmployee.BDAY}}</h5>
+            <h5><b>Next of Kin: </b> {{selectedEmployee.KIN}}</h5>
+            <h5><b>Number: </b> {{selectedEmployee.KINNUMBER}}</h5>
+            <h5><b>Laptop: </b> {{selectedEmployee.LAPTOP}}</h5>
+            <h5><b>3G: </b> {{selectedEmployee.G_MODEM}}</h5>
           </div>
         </form>
       </div>

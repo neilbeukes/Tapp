@@ -10,20 +10,26 @@ export class TeamComponent implements OnInit {
 
   employees;
   selectedEmployee;
+  isDataLoaded = false;
   edit = false;
-  constructor() { }
+  constructor(private service: TeammemberfactoryService) { }
 
   ngOnInit() {
-    this.employees = TeammemberfactoryService.getTeamMembers("");
-    this.selectedEmployee = this.employees[0];
+    this.service.getAll()
+      .subscribe(response => {
+        this.employees = response.json();
+        this.selectedEmployee = this.employees[2];
+        this.isDataLoaded = true;
+      });
+
   }
 
-  selectEmployee(employee){
+  selectEmployee(employee) {
     this.selectedEmployee = employee;
   }
 
   isSelected(employee): boolean {
-    if (employee.id == this.selectedEmployee.id)
+    if (employee._id == this.selectedEmployee._id)
       return true;
     else
       return false;
