@@ -17,6 +17,8 @@ import { HomeComponent } from './home/home.component';
 import { appRoutes } from './app-routes';
 import { AppErrorHandler } from './common/app-error-handler';
 import { LinksGeneralComponent } from './links-general/links-general.component';
+import { FilterPipe} from './pipes/filter.pipe';
+import { AddTeamMemberComponent } from './add-team-member/add-team-member.component';
 
 @NgModule({
   declarations: [
@@ -26,11 +28,14 @@ import { LinksGeneralComponent } from './links-general/links-general.component';
     TeamComponent,
     LinksComponent,
     HomeComponent,
-    LinksGeneralComponent
+    LinksGeneralComponent,
+    FilterPipe,
+    AddTeamMemberComponent 
   ],
   imports: [
     HttpModule,
     BrowserModule,
+    FormsModule,
     NgbModule.forRoot(), 
     RouterModule.forRoot(
       appRoutes
@@ -42,6 +47,7 @@ import { LinksGeneralComponent } from './links-general/links-general.component';
     TeammemberfactoryService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
+  entryComponents: [AddTeamMemberComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title">Add Team Member</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <input type="email" class="form-control" id="email" placeholder="Email">
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" id="cell" placeholder="Cellphone number">
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" id="ext" placeholder="Ext">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="UserID" placeholder="UserID (AB number)">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="Birthday" placeholder="Birthday (eg. 07-APR)">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="kin" placeholder="Next of Kin">
+    </div>
+    <div class="form-group">
+      <input type="number" class="form-control" id="kinNumber" placeholder="Next of Kin contact details">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" id="laptop" placeholder="Laptop Serial Number (PCXXXXXX)">
+    </div>
+    <div class="form-group">
+      <label class="form-check-label" for="3gModem">Do you have a 3G Modem?</label>
+      <input type="checkbox" class="form-check-input ml-2" id="3gModem">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+    <button type="submit" class="btn btn-success">
+        <i class="fa fa-plus"></i> Add</button>
+</div>
