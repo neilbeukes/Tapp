@@ -7,36 +7,42 @@
 <div class="modal-body">
   <form>
     <div class="form-group">
-      <input type="email" class="form-control" id="email" placeholder="Email">
+      <input type="email" class="form-control" [(ngModel)]="teamMember.NAME" id="name" placeholder="Name" name="name">
     </div>
     <div class="form-group">
-      <input type="number" class="form-control" id="cell" placeholder="Cellphone number">
+      <input type="email" class="form-control" [(ngModel)]="teamMember.SURNAME" id="surname" placeholder="Surname" name="surname">
     </div>
     <div class="form-group">
-      <input type="number" class="form-control" id="ext" placeholder="Ext">
+      <input type="email" class="form-control" [(ngModel)]="teamMember.EMAIL" id="email" placeholder="Email" name="email">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" id="UserID" placeholder="UserID (AB number)">
+      <input type="number" class="form-control" [(ngModel)]="teamMember.CELL" id="cell" name="cell" placeholder="Cellphone number">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" id="Birthday" placeholder="Birthday (eg. 07-APR)">
+      <input type="number" class="form-control" [(ngModel)]="teamMember.EXT" id="ext" name="ext" placeholder="Ext">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" id="kin" placeholder="Next of Kin">
+      <input type="text" class="form-control" [(ngModel)]="teamMember.USERID" id="userid" name="userID" placeholder="UserID (AB number)">
     </div>
     <div class="form-group">
-      <input type="number" class="form-control" id="kinNumber" placeholder="Next of Kin contact details">
+      <input type="text" class="form-control" [(ngModel)]="teamMember.BDAY" id="birthday" name="birthday" placeholder="Birthday (eg. 07-APR)">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" id="laptop" placeholder="Laptop Serial Number (PCXXXXXX)">
+      <input type="text" class="form-control" [(ngModel)]="teamMember.KIN" id="kin" name="kin" placeholder="Next of Kin">
     </div>
     <div class="form-group">
-      <label class="form-check-label" for="3gModem">Do you have a 3G Modem?</label>
-      <input type="checkbox" class="form-check-input ml-2" id="3gModem">
+      <input type="number" class="form-control" [(ngModel)]="teamMember.KINNUMBER" id="kinNumber" name="kinNumber" placeholder="Next of Kin contact details">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="teamMember.LAPTOP" id="laptop" name="laptop" placeholder="Laptop Serial Number (PCXXXXXX)">
+    </div>
+    <div class="form-group">
+      <label class="form-check-label" for="gModem">Do you have a 3G Modem?</label>
+      <input type="checkbox" class="form-check-input ml-2" [(ngModel)]="teamMember.GMODEM" id="gModem" name="gModem">
     </div>
   </form>
 </div>
 <div class="modal-footer">
-    <button type="submit" class="btn btn-success">
-        <i class="fa fa-plus"></i> Add</button>
+  <button type="submit" (click)="addTeamMember()" class="btn btn-success">
+    <i class="fa fa-plus"></i> Add</button>
 </div>

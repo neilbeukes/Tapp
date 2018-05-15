@@ -26,8 +26,8 @@ export class DataService {
       //.catchError(this.handleError)
   }
 
-  add(resource) {
-    return this.http.post(this.url + "/add", JSON.stringify(resource))
+  add(request) {
+    return this.http.post(this.url + "/add", JSON.stringify(request))
       //.catchError(this.handleError)
   }
 
