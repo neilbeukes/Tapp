@@ -8,6 +8,6 @@ import { Injectable } from '@angular/core';
 export class TeammemberfactoryService extends DataService {
 
   constructor(http: Http) {
-    super('http://localhost:3000/team', http)
+    super('http://localhost:3000/teammember', http)
   }
 }

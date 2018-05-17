@@ -25,12 +25,18 @@ export class DataService {
   }
 
   delete(id) {
+    console.log("deleting _id: " + id);
     return this.http.delete(this.url + '/delete/' + id)
     //.catchError(this.handleError)
   }
 
   add(request) {
     return this.http.post(this.url + "/add", request, this.headers)
+    //.catchError(this.handleError)
+  }
+
+  update(request) {
+    return this.http.put(this.url + "/update", request, this.headers)
     //.catchError(this.handleError)
   }
 

@@ -1,9 +1,9 @@
 import { RouterModule, Routes } from '@angular/router';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { TeamComponent } from './team/team.component';
-import { LinksComponent } from './links/links.component';
+import { LinksComponent } from './links/links-dev/links.component';
 import { HomeComponent } from './home/home.component';
-import { LinksGeneralComponent } from './links-general/links-general.component';
+import { LinksGeneralComponent } from './links/links-general/links-general.component';
 
 export const appRoutes: Routes = [
   {

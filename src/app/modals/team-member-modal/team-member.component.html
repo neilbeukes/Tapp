@@ -1,6 +1,6 @@
 <div class="modal-header">
-  <h4 class="modal-title">Add Team Member</h4>
-  <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
     <span aria-hidden="true">&times;</span>
   </button>
 </div>
@@ -38,11 +38,11 @@
     </div>
     <div class="form-group">
       <label class="form-check-label" for="gModem">Do you have a 3G Modem?</label>
-      <input type="checkbox" class="form-check-input ml-2" [(ngModel)]="teamMember.GMODEM" id="gModem" name="gModem">
+      <input type="checkbox" class="form-check-input ml-2" [(ngModel)]="teamMember.G_MODEM" id="gModem" name="gModem">
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="submit" (click)="addTeamMember()" class="btn btn-success">
-    <i class="fa fa-plus"></i> Add</button>
+  <button type="submit" (click)="submit()" class="btn btn-success">
+    <i class="fa fa-check"></i> {{button}}</button>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LinksfactoryService } from '../service/linksfactory/linksfactory.service';
+import { LinksfactoryService } from '../../service/linksfactory/linksfactory.service';
 
 @Component({
   selector: 'app-links',

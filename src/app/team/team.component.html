@@ -4,25 +4,25 @@
       <input [(ngModel)]="searchText" class="form-control mr-sm-2" type="search" placeholder="Search"  aria-label="Search">
     </div>
     <div class="col-md-1">
-      <button class="btn btn-success" (click)="open()"> 
+      <button class="btn btn-success" (click)="addTeamMember()"> 
         <i class="fa fa-plus"></i> Add </button>
     </div>
     <div class="col-md-1">
-      <button class="btn btn-danger ">
+      <button class="btn btn-danger" (click)="confirmDeleteTeamMember()">
         <i class="fa fa-trash"></i> Delete</button>
     </div>
     <div class="col-sm-1">
-      <button class="btn btn-primary ml-3">
+      <button class="btn btn-primary ml-3" (click)="updateTeamMember()">
         <i class="fa fa-edit"></i> Update</button>
     </div>
     <div class="col-md-5 ml-5">
-      <label class="alert alert-success">Operation completed successfully</label>
+      <label *ngIf="alertVisible" class="alert alert-success">{{alertText}}</label>
     </div>
   </div>
   
   <div class="row">
     <div class="col-3">
-      <ul class="list-group team-list">
+      <ul class="list-group team-member-list">
         <a *ngFor="let employee of employees | filter : searchText" class="list-group-item list-group-item-action" (click)="selectEmployee(employee)" [ngClass]="{active: isSelected(employee)}">
           <b>{{employee.NAME}} {{employee.SURNAME}} </b>
         </a>

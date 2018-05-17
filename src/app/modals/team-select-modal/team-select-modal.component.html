@@ -1,0 +1,22 @@
+<div class="modal-header" *ngIf="isLoaded">
+  <div class="modal-heading">
+    <h4>Welcome to
+      <span style="border-bottom: green solid"> Tapp</span>,
+    </h4>
+  </div>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <ul class="list-group">
+    <a *ngFor="let team of teams" class="list-group-item list-group-item-action" 
+    (click)="selectTeam(team)" [ngClass]="{active: isSelected(team)}">
+      <b>{{team.Name}} ({{team.Abr}}) </b>
+    </a>
+  </ul>
+</div>
+<div class="modal-footer">
+  <button type="submit" (click)="save()" class="btn btn-success">
+    <i class="fa fa-check"></i> Save</button>
+</div>

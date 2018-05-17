@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddTeamMemberComponent } from './add-team-member.component';
+import { TeamSelectModalComponent } from './team-select-modal.component';
 
-describe('AddTeamMemberComponent', () => {
-  let component: AddTeamMemberComponent;
-  let fixture: ComponentFixture<AddTeamMemberComponent>;
+describe('TeamSelectModalComponent', () => {
+  let component: TeamSelectModalComponent;
+  let fixture: ComponentFixture<TeamSelectModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddTeamMemberComponent ]
+      declarations: [ TeamSelectModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddTeamMemberComponent);
+    fixture = TestBed.createComponent(TeamSelectModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
