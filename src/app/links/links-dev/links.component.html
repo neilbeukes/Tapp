@@ -1,5 +1,25 @@
 <div class="container mt-5">
   <div class="jumbotron">
+    <div class="row mb-4">
+    <div class="col-md-2">
+
+    </div>
+        <div class="col-md-1">
+            <button class="btn btn-success" (click)="addTeamMember()"> 
+              <i class="fa fa-plus"></i> Add </button>
+          </div>
+          <div class="col-md-1">
+            <button class="btn btn-danger" (click)="confirmDeleteTeamMember()">
+              <i class="fa fa-trash"></i> Delete</button>
+          </div>
+          <div class="col-sm-1">
+            <button class="btn btn-primary ml-3" (click)="updateTeamMember()">
+              <i class="fa fa-edit"></i> Update</button>
+          </div>
+          <div class="col-md-5 ml-5">
+            <label *ngIf="alertVisible" class="alert alert-success">{{alertText}}</label>
+          </div>
+    </div>
     <div class="row">
       <div class="col">
         <ul class="list-group">

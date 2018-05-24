@@ -1,12 +1,31 @@
 import { Component, OnInit } from '@angular/core';
+import { TeamService } from '../service/team/team.service';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
-  isCollapsed = false;
-  constructor() { }
+export class NavbarComponent implements OnInit {
 
+  isCollapsed = false;
+  selectedTeam = '';
+
+  constructor(private teamService: TeamService) {
+  }
+
+  ngOnInit() {
+    if (this.teamService.getSelectedTeamName() == '')
+      this.changeTeam();
+    else
+      this.selectedTeam = this.teamService.getSelectedTeamName();
+  }
+
+  changeTeam() {
+    this.teamService.changeTeam(() => {
+      console.log("updating team name");
+      this.selectedTeam = this.teamService.getSelectedTeamName();
+    });
+
+  }
 }

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root'
 })
-export class LinksfactoryService {
+export class LinksService {
 
   public static getApplications(): Array<any> {
 

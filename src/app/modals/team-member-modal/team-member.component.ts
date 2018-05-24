@@ -1,8 +1,9 @@
 import { TeamComponent } from './../../team/team.component';
-import { TeammemberfactoryService } from './../../service/teammemberfactory/teammemberfactory.service';
+import { TeammemberService } from './../../service/teammember/teammember.service';
 import { Component, OnInit, Injectable } from '@angular/core';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { TeamService } from '../../service/team/team.service';
 
 @Component({
   selector: 'app-team-member',
@@ -14,8 +15,8 @@ export class TeamMemberComponent {
 
   public title = "";
   public button = "";
-  teamMember = {};
-  constructor(public activeModal: NgbActiveModal, private factory: TeammemberfactoryService) { }
+  teamMember:any = {};
+  constructor(public activeModal: NgbActiveModal, private tmService: TeammemberService, private teamService: TeamService) { }
 
   submit() {
     if (this.button === "Add") {
@@ -28,14 +29,15 @@ export class TeamMemberComponent {
   }
 
   addTeamMember() {
-    this.factory.add(this.teamMember)
+    this.teamMember.team = this.teamService.getSelectedTeamAbr();
+    this.tmService.add(this.teamMember)
       .subscribe(response => {
         this.activeModal.close({ alertText: "Team member added successfully" });
       });
   }
 
   updateTeamMember() {
-    this.factory.update(this.teamMember)
+    this.tmService.update(this.teamMember)
       .subscribe(response => {
         this.activeModal.close({ alertText: "Team member updated successfully" });
       });

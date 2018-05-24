@@ -1,5 +1,5 @@
-import { TeammemberfactoryService } from './service/teammemberfactory/teammemberfactory.service';
-import { LinksfactoryService } from './service/linksfactory/linksfactory.service';
+import { TeammemberService } from './service/teammember/teammember.service';
+import { LinksService } from './service/links/links.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -22,7 +22,7 @@ import { FilterPipe} from './common/pipes/filter.pipe';
 import { TeamMemberComponent } from './modals/team-member-modal/team-member.component';
 import { ConfirmationModalComponent } from './modals/confirmation-modal/confirmation-modal.component';
 import { TeamSelectModalComponent } from './modals/team-select-modal/team-select-modal.component';
-import { TeamDataService } from './service/teamservice/teamservice.service';
+import { TeamService } from './service/team/team.service';
 
 @NgModule({
   declarations: [
@@ -49,10 +49,10 @@ import { TeamDataService } from './service/teamservice/teamservice.service';
     )
   ],
   providers: [
-    LinksfactoryService,
-    TeammemberfactoryService,
+    LinksService,
+    TeammemberService,
     CookieService,
-    TeamDataService,
+    TeamService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   entryComponents: [TeamMemberComponent,ConfirmationModalComponent,TeamSelectModalComponent],

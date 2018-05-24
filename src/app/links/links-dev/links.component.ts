@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LinksfactoryService } from '../../service/linksfactory/linksfactory.service';
+import { LinksService } from '../../service/links/links.service';
 
 @Component({
   selector: 'app-links',
@@ -17,8 +17,8 @@ export class LinksComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.links = LinksfactoryService.getLinks(this.selectApplication, this.selectedEnv)
-    this.applications = LinksfactoryService.getApplications();
+    this.links = LinksService.getLinks(this.selectApplication, this.selectedEnv)
+    this.applications = LinksService.getApplications();
     this.selectedApplication = this.applications[0];
   }
 

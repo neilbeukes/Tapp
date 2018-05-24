@@ -1,5 +1,5 @@
 import { Component, OnInit, Injectable, Input } from '@angular/core';
-import { TeammemberfactoryService } from '../service/teammemberfactory/teammemberfactory.service';
+import { TeammemberService } from '../service/teammember/teammember.service';
 import { FormsModule } from '@angular/forms';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TeamMemberComponent } from '../modals/team-member-modal/team-member.component';
@@ -19,7 +19,7 @@ export class TeamComponent implements OnInit {
   selectedEmployee;
   isDataLoaded = false;
 
-  constructor(private service: TeammemberfactoryService, private modalService: NgbModal) { }
+  constructor(private service: TeammemberService, private modalService: NgbModal) { }
 
   ngOnInit() {
     this.getTeamMembers();
@@ -63,7 +63,7 @@ export class TeamComponent implements OnInit {
     this.service.getAll()
       .subscribe(response => {
         this.employees = response.json();
-        this.selectedEmployee = this.employees[1];
+        this.selectedEmployee = this.employees[0];
         this.isDataLoaded = true;
       });
   }
@@ -74,6 +74,8 @@ export class TeamComponent implements OnInit {
     modalRef.result.then(result => {
       if (result)
         this.deleteTeamMember();
+    }).catch(err => {
+      console.log("modal dissmisssed");
     })
   }
 

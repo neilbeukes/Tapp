@@ -8,7 +8,7 @@
 
 .navbar-heading{
     padding-left: 10px;
-    border-bottom: green solid;
+    border-bottom: #C75146;
 }
 
 .list-group-item-action{
@@ -17,8 +17,9 @@
 .list-group-item.active {
     z-index: 2;
     color: #fff;
-    background-color: #2f9d45;
+    background-color: #C75146;
     border-color: gray;
+    
   }
 
   .list-group-item {
@@ -27,17 +28,62 @@
     padding: 0.75rem 0.75rem;
     margin-bottom: -1px;
     background-color:lightgray;
-    border: 1px solid #2f9d45;
+    border: 1px solid #C75146;
   }
 
   .list-group-item-action:hover, .list-group-item-action:focus {
     color: #495057;
     text-decoration: none;
-    background-color: #2f9d45;
+    color: #fff;
+    background-color: #ad2e24;
   }
 
   .team-member-list{
     max-height: 600px;
     margin-bottom: 10px;
     overflow:scroll;
+  }
+
+  .btn-tapp {
+    color: #fff;
+    background-color: #AD2E24;
+    border-color: #AD2E24;
+  }
+  
+  .btn-tapp:hover {
+    color: #fff;
+    background-color: #822E31;
+    border-color: #822E31;
+  }
+  
+  .btn-tapp:focus, .btn-tapp.focus {
+    box-shadow: 0 0 0 0.2rem rgba(129, 23, 27, 0.5);
+  }
+  
+  .btn-tapp.disabled, .btn-tapp:disabled {
+    color: #fff;
+    background-color: #822E31;
+    border-color: #822E31;
+  }
+
+  .btn-outline-tapp {
+    color: #AD2E24;
+    background-color: transparent;
+    background-image: none;
+    border-color: #AD2E24;
+  }
+  
+  .btn-outline-tapp:hover {
+    color: #fff;
+    background-color: #822E31;
+    border-color: #822E31;
+  }
+  
+  .btn-outline-tapp:focus, .btn-outline-tapp.focus {
+    box-shadow: 0 0 0 0.2rem #AD2E24;
+  }
+  
+  .btn-outline-tapp.disabled, .btn-outline-tapp:disabled {
+    color: #822E31;
+    background-color: transparent;
   }
