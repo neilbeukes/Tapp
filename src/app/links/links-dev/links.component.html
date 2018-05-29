@@ -55,7 +55,7 @@
               <b>{{selectedApplication.name}} - {{selectedEnv}}</b>
             </h4>
             <ul>
-              <li *ngFor="let link of links">
+              <li *ngFor="let link of links | devLinks : selectedApplication.name : selectedEnv">
                 <p class="card-text">
                   <a href="link.url">{{link.name}}</a>
                 </p>

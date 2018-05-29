@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LinksService } from '../../service/links/links.service';
+import { GeneralLinksService } from '../../service/links/general-links/general-links.service';
 
 @Component({
   selector: 'app-links-general',
@@ -10,8 +10,10 @@ export class LinksGeneralComponent implements OnInit {
 
   links;
 
+  constructor(private gls: GeneralLinksService){}
+
   ngOnInit() {
-    this.links = LinksService.getGeneralLinks();
+    
   }
 
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LinksService } from '../../service/links/links.service';
+import { DevLinksService } from '../../service/links/dev-links/dev-links.service';
 
 @Component({
   selector: 'app-links',
@@ -13,12 +13,16 @@ export class LinksComponent implements OnInit {
 
   selectedApplication;
   selectedEnv = 'Dev';
+  dataLoaded = false;
 
-  constructor() { }
+  constructor(private devLinksService: DevLinksService) { }
 
   ngOnInit() {
-    this.links = LinksService.getLinks(this.selectApplication, this.selectedEnv)
-    this.applications = LinksService.getApplications();
+    this.devLinksService.getAll().subscribe(response => {
+      this.links = response.json();
+      this.dataLoaded = true;
+    });
+    this.applications = this.devLinksService.getApplications();
     this.selectedApplication = this.applications[0];
   }
 
