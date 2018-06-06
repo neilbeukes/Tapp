@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="devLink.name" id="name" placeholder="Name" name="name">
+    </div>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="devLink.url" id="url" placeholder="Url" name="url">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" (click)="submit()" class="btn btn-success">
+    <i class="fa fa-check"></i> Save</button>
+</div>

@@ -24,6 +24,7 @@ import { ConfirmationModalComponent } from './modals/confirmation-modal/confirma
 import { TeamSelectModalComponent } from './modals/team-select-modal/team-select-modal.component';
 import { TeamService } from './service/team/team.service';
 import { GeneralLinksService } from './service/links/general-links/general-links.service';
+import { DevLinksModalComponent } from './modals/dev-links-modal/dev-links-modal.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { GeneralLinksService } from './service/links/general-links/general-links
     DevLinksPipe,
     TeamMemberComponent,
     ConfirmationModalComponent,
-    TeamSelectModalComponent
+    TeamSelectModalComponent,
+    DevLinksModalComponent
   ],
   imports: [
     HttpModule,
@@ -58,7 +60,12 @@ import { GeneralLinksService } from './service/links/general-links/general-links
     TeamService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
-  entryComponents: [TeamMemberComponent,ConfirmationModalComponent,TeamSelectModalComponent],
+  entryComponents: [
+    TeamMemberComponent, 
+    ConfirmationModalComponent, 
+    TeamSelectModalComponent, 
+    DevLinksModalComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

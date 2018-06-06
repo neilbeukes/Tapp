@@ -8,7 +8,7 @@ import { Http } from '@angular/http';
 export class DevLinksService extends DataService {
 
   constructor(http: Http) {
-    super("http://localhost:3000/links/dev/", http)
+    super("http://localhost:3000/links/dev", http)
   }
 
   getApplications(): Array<any> {

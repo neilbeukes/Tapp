@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DevLinksService } from '../../service/links/dev-links/dev-links.service';
+import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { DevLinksModalComponent } from '../../modals/dev-links-modal/dev-links-modal.component';
 
 @Component({
   selector: 'app-links',
@@ -15,9 +17,16 @@ export class LinksComponent implements OnInit {
   selectedEnv = 'Dev';
   dataLoaded = false;
 
-  constructor(private devLinksService: DevLinksService) { }
+  alertVisible = false;
+  alertText = "";
+
+  constructor(private devLinksService: DevLinksService, private ngModel: NgbModal) { }
 
   ngOnInit() {
+    this.getLinks();
+  }
+
+  getLinks() {
     this.devLinksService.getAll().subscribe(response => {
       this.links = response.json();
       this.dataLoaded = true;
@@ -26,8 +35,9 @@ export class LinksComponent implements OnInit {
     this.selectedApplication = this.applications[0];
   }
 
-  selectApplication(application){
+  selectApplication(application) {
     this.selectedApplication = application;
+    console.log(this.selectedApplication);
   }
 
   isApplicationSelected(application): boolean {
@@ -37,7 +47,7 @@ export class LinksComponent implements OnInit {
       return false;
   }
 
-  selectEnv(env){
+  selectEnv(env) {
     this.selectedEnv = env;
   }
 
@@ -46,5 +56,21 @@ export class LinksComponent implements OnInit {
       return true;
     else
       return false;
+  }
+
+  addLink() {
+    const modalRef = this.ngModel.open(DevLinksModalComponent);
+    modalRef.componentInstance.setContent(this.selectedEnv, this.selectedApplication.name, "Add");
+    modalRef.result.then(result => {
+      this.showAlert(true, result.alertText);
+      this.getLinks();
+    }).catch(err => {
+      console.log("modal dissmisssed");
+    })
+  }
+
+  showAlert(value: boolean, text: string) {
+    this.alertVisible = value;
+    this.alertText = text;
   }
 }

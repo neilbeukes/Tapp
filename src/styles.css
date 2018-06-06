@@ -87,3 +87,8 @@
     color: #822E31;
     background-color: transparent;
   }
+
+  .table-dark {
+    color: #fff;
+    background-color: #343a40;
+  }

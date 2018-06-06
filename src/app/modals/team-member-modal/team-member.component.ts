@@ -16,7 +16,7 @@ export class TeamMemberComponent {
   public title = "";
   public button = "";
   teamMember:any = {};
-  constructor(public activeModal: NgbActiveModal, private tmService: TeammemberService, private teamService: TeamService) { }
+  constructor(private activeModal: NgbActiveModal, private tmService: TeammemberService, private teamService: TeamService) { }
 
   submit() {
     if (this.button === "Add") {
