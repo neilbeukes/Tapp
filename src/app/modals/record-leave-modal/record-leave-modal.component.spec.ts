@@ -1,19 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DevLinksModalComponent } from './dev-links-modal.component';
 
-describe('DevLinksModalComponent', () => {
-  let component: DevLinksModalComponent;
-  let fixture: ComponentFixture<DevLinksModalComponent>;
+import { RecordLeaveModalComponent } from './record-leave-modal.component';
+
+describe('RecordLeaveModalComponent', () => {
+  let component: RecordLeaveModalComponent;
+  let fixture: ComponentFixture<RecordLeaveModalComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DevLinksModalComponent ]
+      declarations: [ RecordLeaveModalComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DevLinksModalComponent);
+    fixture = TestBed.createComponent(RecordLeaveModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

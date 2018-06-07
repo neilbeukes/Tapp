@@ -25,6 +25,10 @@ import { TeamSelectModalComponent } from './modals/team-select-modal/team-select
 import { TeamService } from './service/team/team.service';
 import { GeneralLinksService } from './service/links/general-links/general-links.service';
 import { DevLinksModalComponent } from './modals/dev-links-modal/dev-links-modal.component';
+import { DeleteLinksModalComponent } from './modals/delete-links-modal/delete-links-modal.component';
+import { LeaveComponent } from './leave/leave.component';
+import { RecordLeaveModalComponent } from './modals/record-leave-modal/record-leave-modal.component';
+import { LeaveService } from './service/leave/leave.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +44,10 @@ import { DevLinksModalComponent } from './modals/dev-links-modal/dev-links-modal
     TeamMemberComponent,
     ConfirmationModalComponent,
     TeamSelectModalComponent,
-    DevLinksModalComponent
+    DevLinksModalComponent,
+    DeleteLinksModalComponent,
+    LeaveComponent,
+    RecordLeaveModalComponent
   ],
   imports: [
     HttpModule,
@@ -58,13 +65,16 @@ import { DevLinksModalComponent } from './modals/dev-links-modal/dev-links-modal
     TeammemberService,
     CookieService,
     TeamService,
+    LeaveService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   entryComponents: [
     TeamMemberComponent, 
     ConfirmationModalComponent, 
     TeamSelectModalComponent, 
-    DevLinksModalComponent
+    DevLinksModalComponent,
+    DeleteLinksModalComponent,
+    RecordLeaveModalComponent
   ],
   bootstrap: [AppComponent]
 })

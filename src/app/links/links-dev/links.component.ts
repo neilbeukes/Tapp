@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DevLinksService } from '../../service/links/dev-links/dev-links.service';
 import { NgbModal, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { DevLinksModalComponent } from '../../modals/dev-links-modal/dev-links-modal.component';
+import { DeleteLinksModalComponent } from '../../modals/delete-links-modal/delete-links-modal.component';
 
 @Component({
   selector: 'app-links',
@@ -60,9 +61,20 @@ export class LinksComponent implements OnInit {
 
   addLink() {
     const modalRef = this.ngModel.open(DevLinksModalComponent);
-    modalRef.componentInstance.setContent(this.selectedEnv, this.selectedApplication.name, "Add");
+    modalRef.componentInstance.setContent(this.selectedEnv, this.selectedApplication.name);
     modalRef.result.then(result => {
       this.showAlert(true, result.alertText);
+      this.getLinks();
+    }).catch(err => {
+      console.log("modal dissmisssed");
+    })
+  }
+
+  deleteLink() {
+    const modalRef = this.ngModel.open(DeleteLinksModalComponent);
+    modalRef.componentInstance.setContent("Delete selected link", this.links, this.selectedEnv, this.selectedApplication.name);
+    modalRef.result.then(result => {
+      this.showAlert(result, "Link Deleted");
       this.getLinks();
     }).catch(err => {
       console.log("modal dissmisssed");

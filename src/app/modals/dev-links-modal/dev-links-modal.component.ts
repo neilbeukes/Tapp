@@ -11,13 +11,12 @@ export class DevLinksModalComponent implements OnInit {
 
   title = "Add Link for the selected enviroment"
   devLink:any = {};
-  button = "Add";
   constructor(private activeModal: NgbActiveModal, private devLinksService: DevLinksService) { }
 
   ngOnInit() {
   }
 
-  setContent(env, app, button) {
+  setContent(env, app) {
     this.title = "Add link for " + app + " - " + env;
     this.devLink.application = app;
     this.devLink.env = env;

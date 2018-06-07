@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <h4 class="modal-title">Record future leave</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <p>Please note: This is only for notifying your team, you still need to go book leave in the HR protal.</p>
+  <div class="btn-group btn-group-toggle mb-3" data-toggle="buttons">
+    <label class="btn btn-secondary" [ngClass]="{active: singleDay}">
+      <input type="radio" name="options" id="option1" (click)="singleDay=true;"> Single day
+    </label>
+    <label class="btn btn-secondary" [ngClass]="{active: ! singleDay}">
+      <input type="radio" name="options" id="option2" (click)="singleDay=false;"> More then one day
+    </label>
+  </div>
+  <div *ngIf="singleDay">
+    <ngb-datepicker #dp [(ngModel)]="model" (navigate)="date = $event.next"></ngb-datepicker>
+  </div>
+  <div *ngIf="!singleDay">
+    <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t">
+    </ngb-datepicker>
+
+    <ng-template #t let-date="date" let-focused="focused">
+      <span class="custom-day" [class.focused]="focused" [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
+        [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
+        {{ date.day }}
+      </span>
+    </ng-template>
+    <p>{{selectedDate}}</p>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="submit" (click)="recordLeave()" class="btn btn-success">
+    <i class="fa fa-check"></i> Save</button>
+</div>
