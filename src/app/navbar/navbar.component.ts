@@ -1,3 +1,4 @@
+import { LoginService } from './../service/login/login.service';
 import { Component, OnInit } from '@angular/core';
 import { TeamService } from '../service/team/team.service';
 
@@ -11,7 +12,7 @@ export class NavbarComponent implements OnInit {
   isCollapsed = false;
   selectedTeam = '';
 
-  constructor(private teamService: TeamService) {
+  constructor(private teamService: TeamService, private loginService: LoginService) {
   }
 
   ngOnInit() {
@@ -26,6 +27,12 @@ export class NavbarComponent implements OnInit {
       console.log("updating team name");
       this.selectedTeam = this.teamService.getSelectedTeamName();
     });
-
   }
+
+  login(){
+    this.loginService.login().then(response =>{
+      console.log(response);
+    })
+  }
+  
 }

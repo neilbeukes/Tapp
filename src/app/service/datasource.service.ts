@@ -1,3 +1,4 @@
+import { TeamService } from './team/team.service';
 import { BadInput } from './../common/bad-input';
 import { NotFoundError } from './../common/not-fournd-error';
 import { AppError } from './../common/app-error';
@@ -20,6 +21,12 @@ export class DataService {
 
   getAll() {
     return this.http.get(this.url)
+    // .map(Response => Response.json()) if you want to map the response
+    //.catchError(this.handleError)
+  }
+
+  getAllForTeam(team) {
+    return this.http.get(this.url + "?team=" + team);
     // .map(Response => Response.json()) if you want to map the response
     //.catchError(this.handleError)
   }

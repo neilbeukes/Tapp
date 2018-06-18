@@ -1,3 +1,4 @@
+import { AuthService } from './service/auth/auth.service';
 import { TeammemberService } from './service/teammember/teammember.service';
 import { DevLinksService } from './service/links/dev-links/dev-links.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,6 +30,11 @@ import { DeleteLinksModalComponent } from './modals/delete-links-modal/delete-li
 import { LeaveComponent } from './leave/leave.component';
 import { RecordLeaveModalComponent } from './modals/record-leave-modal/record-leave-modal.component';
 import { LeaveService } from './service/leave/leave.service';
+import { BoardMessageModalComponent } from './modals/board-message-modal/board-message-modal.component';
+import { BoardComponent } from './board/board.component';
+import { BoardService } from './service/board/board.service';
+import { LoginModalComponent } from './modals/login-modal/login-modal.component';
+import { LoginService } from './service/login/login.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +53,10 @@ import { LeaveService } from './service/leave/leave.service';
     DevLinksModalComponent,
     DeleteLinksModalComponent,
     LeaveComponent,
-    RecordLeaveModalComponent
+    RecordLeaveModalComponent,
+    BoardMessageModalComponent,
+    BoardComponent,
+    LoginModalComponent
   ],
   imports: [
     HttpModule,
@@ -66,6 +75,9 @@ import { LeaveService } from './service/leave/leave.service';
     CookieService,
     TeamService,
     LeaveService,
+    BoardService,
+    AuthService,
+    LoginService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   entryComponents: [
@@ -74,7 +86,9 @@ import { LeaveService } from './service/leave/leave.service';
     TeamSelectModalComponent, 
     DevLinksModalComponent,
     DeleteLinksModalComponent,
-    RecordLeaveModalComponent
+    RecordLeaveModalComponent,
+    BoardMessageModalComponent,
+    LoginModalComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbActiveModal, NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbActiveModal, NgbDateStruct, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { LeaveService } from '../../service/leave/leave.service';
 import { TeamService } from '../../service/team/team.service';
 
@@ -32,7 +32,7 @@ export class RecordLeaveModalComponent {
   singleDay:boolean = true;
 
   constructor(private activeModal: NgbActiveModal, calendar: NgbCalendar, 
-    private leaveService: LeaveService, private teamService: TeamService) {
+    private leaveService: LeaveService, private teamService: TeamService, private dateFormatter: NgbDateParserFormatter) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -47,7 +47,6 @@ export class RecordLeaveModalComponent {
       this.fromDate = date;
     }
     this.selectedDate = this.dateToString();
-    console.log("fromDate: " + this.fromDate + " toDate: " + this.toDate)
   }
 
   isHovered = date => this.fromDate && !this.toDate && this.hoveredDate && after(date, this.fromDate) && before(date, this.hoveredDate);
@@ -60,10 +59,8 @@ export class RecordLeaveModalComponent {
       if (this.fromDate.day == null || this.toDate.day == null)
       return "please pick a date";
       else
-        return "Date selected: " + this.fromDate.day + "-" + this.fromDate.month + "-" + this.fromDate.year +
-          " to " + this.toDate.day + "-" + this.toDate.month + "-" + this.toDate.year;
+        return  this.dateFormatter.format(this.fromDate) + " to " + this.dateFormatter.format(this.toDate)
     } catch{}
-    console.log(new Date(this.fromDate.year, this.fromDate.month, this.fromDate.day))
     return "please pick a date";
   }
 
@@ -84,8 +81,8 @@ export class RecordLeaveModalComponent {
     }
     return {name: "Neil Beukes",
             userId: "ABNB559",
-            fromDate: this.fromDate.day + "-" + this.fromDate.month + "-" + this.fromDate.year,
-            toDate: this.toDate.day + "-" + this.toDate.month + "-" + this.toDate.year,
+            fromDate: this.dateFormatter.format(this.fromDate),
+            toDate: this.dateFormatter.format(this.toDate),
             team: this.teamService.getSelectedTeamAbr()};
   }
 }

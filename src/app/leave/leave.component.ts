@@ -1,5 +1,6 @@
+import { TeamService } from './../service/team/team.service';
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbActiveModal, NgbDateStruct, NgbCalendar} from '@ng-bootstrap/ng-bootstrap'; 
+import { NgbModal, NgbActiveModal, NgbDateStruct, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { RecordLeaveModalComponent } from '../modals/record-leave-modal/record-leave-modal.component';
 import { LeaveService } from '../service/leave/leave.service';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -29,10 +30,11 @@ export class LeaveComponent implements OnInit {
   fromDate: NgbDateStruct;
   toDate: NgbDateStruct;
 
-  constructor(private modalService: NgbModal, private leaveService: LeaveService, calendar: NgbCalendar) {
+  constructor(private modalService: NgbModal, private leaveService: LeaveService, private calendar: NgbCalendar,
+    private dateFormatter: NgbDateParserFormatter, private teamService: TeamService) {
     this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
-   }
+    this.toDate = calendar.getToday();
+  }
 
   ngOnInit() {
     this.getLeave();
@@ -54,46 +56,51 @@ export class LeaveComponent implements OnInit {
   isFrom = date => equals(date, this.fromDate);
   isTo = date => equals(date, this.toDate);
 
-  recordLeave(){
+  recordLeave() {
     const modalRef = this.modalService.open(RecordLeaveModalComponent);
     modalRef.result.then(result => {
+      this.getLeave();
     }).catch(err => {
       console.log("modal dissmisssed");
     })
   }
 
-  getLeave(){
-    this.leaveService.getAll().subscribe(response => {
-      this.leaveRecords = this.sortRecords(response.json());
+  getLeave() {
+    this.leaveService.getAllForTeam(this.teamService.getSelectedTeamAbr()).subscribe(response => {
+      var records = response.json();
+      for (var i = 0; i < records.length; i++) {
+        if (records[i].toDate < this.dateFormatter.format(this.calendar.getToday())) {
+          if (i !== -1) {
+            records.splice(i, 1);
+          }
+        }else if (new Date(records[i].fromDate).getMonth() > (new Date(this.dateFormatter.format(this.calendar.getToday())).getMonth()+2)){
+          if (i !== -1) {
+            records.splice(i, 1);
+          }
+        }
+      }
+      this.leaveRecords = this.sortRecords(records);
     })
   }
 
-  setCalender(record){
-    var fromDateSplit = record.fromDate.split("-", 3); 
-    var toDateSplit = record.toDate.split("-", 3); 
-    this.fromDate.day = Number(fromDateSplit[0]);
-    this.fromDate.month = Number(fromDateSplit[1]);
-    this.fromDate.year = Number(fromDateSplit[2]);
-    this.toDate.day = Number(toDateSplit[0]);
-    this.toDate.month = Number(toDateSplit[1]);
-    this.toDate.year = Number(toDateSplit[2]);
+  setCalender(record) {
+    this.fromDate = this.dateFormatter.parse(record.fromDate);
+    this.toDate = this.dateFormatter.parse(record.toDate);
   }
 
-  sortRecords(records){
+  sortRecords(records) {
+    for (var i = 0, len = records.length; i < len - 1; i++) {
+      for (var j = 0, len = records.length; j < len - 1 - i; j++) {
+        var testi = new Date(records[j].fromDate);
+        var testj = new Date(records[j + 1].fromDate);
+        if (testi > testj) {
+          var z = records[j];
+          records[j] = records[j + 1];
+          records[j + 1] = z;
+        }
+      }
+    }
     return records;
   }
 }
 
-    // for (var i = 0, len = records.length; i < len; i++) {
-    //    var testx = Number((records[i].fromDate.split("-", 3)[1]) + (records[i].fromDate.split("-", 3)[0]));
-    //    for (var j = 1, len = records.length; j < len; j++) {
-    //     var testy = Number((records[j].fromDate.split("-", 3)[1]) + (records[j].fromDate.split("-", 3)[0]));
-    //     if (testx > testy){
-    //       console.log(testx +" > "+ testy);
-    //       var z = records[i];
-    //       records[i] = records[j];
-    //       records[j] = z;
-    //     }
-    //   }
-    // }
-    // console.log(records)

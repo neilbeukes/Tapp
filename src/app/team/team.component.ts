@@ -1,3 +1,4 @@
+import { TeamService } from './../service/team/team.service';
 import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { TeammemberService } from '../service/teammember/teammember.service';
 import { FormsModule } from '@angular/forms';
@@ -19,7 +20,7 @@ export class TeamComponent implements OnInit {
   selectedEmployee;
   isDataLoaded = false;
 
-  constructor(private service: TeammemberService, private modalService: NgbModal) { }
+  constructor(private service: TeammemberService, private modalService: NgbModal, private teamService: TeamService) { }
 
   ngOnInit() {
     this.getTeamMembers();
@@ -60,7 +61,7 @@ export class TeamComponent implements OnInit {
   }
 
   getTeamMembers() {
-    this.service.getAll()
+    this.service.getAllForTeam(this.teamService.getSelectedTeamAbr())
       .subscribe(response => {
         this.employees = response.json();
         this.selectedEmployee = this.employees[0];

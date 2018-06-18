@@ -1,3 +1,4 @@
+import { BoardComponent } from './board/board.component';
 import { RouterModule, Routes } from '@angular/router';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { TeamComponent } from './team/team.component';
@@ -26,6 +27,10 @@ export const appRoutes: Routes = [
   {
     path: 'leave',
     component: LeaveComponent
+  },
+  {
+    path: 'board',
+    component: BoardComponent
   },
   {
     path: '**',

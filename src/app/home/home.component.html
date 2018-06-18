@@ -1,4 +1,4 @@
-  <div style="background-color: #e9ecef;">
+<div style="background-color: #e9ecef;">
   <div class="row">
     <div class="col-md-9 mt-5">
       <div class="text-center d-flex">
@@ -6,6 +6,7 @@
           <div class="row mt-4">
             <div class="col-lg-8 mx-auto">
               <h1 class="display-4">
+                <img class="img mr-3" src="assets/images/teamwork.svg" style="height: 65px;">
                 <strong>Team APPlication</strong>
               </h1>
               <hr style="background-color:#e65c00;">
@@ -42,28 +43,30 @@
   </div>
   <div class="row mt-5">
     <div class="col-md-2 ml-5">
-      <button class="btn btn-tapp btn-block">
+      <button class="btn btn-tapp btn-block" routerLink="team">
         <h6>
-          <i class="fa fa-map-marker"></i> Update Location</h6>
+          <i class="fa fa-users"></i> Team Details</h6>
       </button>
     </div>
     <div class="col-md-2 ml-1">
-      <button class="btn btn-danger btn-block">
+      <button class="btn btn-danger btn-block" routerLink="leave">
         <h6>
           <i class="fa fa-plane"></i> Record Leave</h6>
       </button>
     </div>
     <div class="col-md-2 ml-1">
-      <button class="btn btn-primary btn-block">
+      <button class="btn btn-primary btn-block" routerLink="board">
         <h6>
           <i class="fa fa-envelope-open"></i> Post Team Message</h6>
       </button>
     </div>
     <div class="col-md-2 ml-1">
-      <button class="btn btn-success btn-block">
+      <button class="btn btn-success btn-block" href="mailto:Neil.Beukes@Absa.co.za">
         <h6>
           <i class="fa fa-star"></i> Request Feature</h6>
       </button>
     </div>
+  </div>
+  <hr class="mt-3 mb-2 ml-5 mr-5" style="background-color:#e65c00;">
 </div>
-</div>
+<app-board></app-board>

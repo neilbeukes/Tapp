@@ -1,0 +1,24 @@
+<div class="modal-header">
+  <h4 class="modal-title text-dark">Login</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form>
+    <div class="form-group">
+      <input type="text" class="form-control" [(ngModel)]="user.username" id="username" placeholder="username (ABnumber)" name="username">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" [(ngModel)]="user.password" id="password" placeholder="Password" name="password">
+    </div>
+  </form>
+  <div style="margin-top: 25px">
+    <span class="alert alert-danger"> Invalid combination of username and Password</span>
+  </div>
+  
+</div>
+<div class="modal-footer">
+  <button type="submit" (click)="submit()" class="btn btn-success">
+    <i class="fa fa-check"></i> login</button>
+</div>

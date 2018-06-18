@@ -19,7 +19,7 @@ export class LinksComponent implements OnInit {
   dataLoaded = false;
 
   alertVisible = false;
-  alertText = "";
+  alertText = '';
 
   constructor(private devLinksService: DevLinksService, private ngModel: NgbModal) { }
 
