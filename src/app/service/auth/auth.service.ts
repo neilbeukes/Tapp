@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { environment } from './../../../environments/environment';
 import { AuthResponseObject } from './AuthResponseObject';
 import { HttpClient } from '@angular/common/http';
@@ -10,7 +11,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 })
 export class AuthService {
 
-  constructor(public jwtHelper: JwtHelperService, private http: HttpClient) {
+  constructor(public jwtHelper: JwtHelperService, private http: HttpClient, private router: Router) {
   }
 
   authenticate(credentials, callback) {
@@ -50,6 +51,7 @@ export class AuthService {
     console.log('logging out...');
     localStorage.setItem('userId', '');
     localStorage.setItem('username', '');
+    this.router.navigateByUrl('');
     localStorage.setItem('token', '');
   }
 }

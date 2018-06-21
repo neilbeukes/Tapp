@@ -40,6 +40,7 @@ import { AuthGuardService } from './service/authguard/auth-guard.service';
 import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 import { DeleteleavemodalComponent } from './modals/delete-leave-modal/delete-leave-modal.component';
+import { GeneralLinksModalComponent } from './modals/general-links-modal/general-links-modal.component';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,8 @@ import { DeleteleavemodalComponent } from './modals/delete-leave-modal/delete-le
     BoardMessageModalComponent,
     BoardComponent,
     LoginModalComponent,
-    DeleteleavemodalComponent
+    DeleteleavemodalComponent,
+    GeneralLinksModalComponent
   ],
   imports: [
     HttpModule,
@@ -108,7 +110,8 @@ import { DeleteleavemodalComponent } from './modals/delete-leave-modal/delete-le
     RecordLeaveModalComponent,
     BoardMessageModalComponent,
     LoginModalComponent,
-    DeleteleavemodalComponent
+    DeleteleavemodalComponent,
+    GeneralLinksModalComponent
   ],
   bootstrap: [AppComponent]
 })

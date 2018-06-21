@@ -10,5 +10,4 @@ export class GeneralLinksService extends DataService {
   constructor(http: HttpClient) {
     super("/links/general", http)
   }
-
 }
