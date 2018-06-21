@@ -8,7 +8,7 @@
         <i class="fa fa-plus"></i> Add </button>
     </div>
     <div class="col-md-1">
-      <button class="btn btn-danger" (click)="confirmDeleteTeamMember()">
+      <button class="btn btn-danger" [disabled]="isAdmin()" (click)="confirmDeleteTeamMember()">
         <i class="fa fa-trash"></i> Delete</button>
     </div>
     <div class="col-sm-1">

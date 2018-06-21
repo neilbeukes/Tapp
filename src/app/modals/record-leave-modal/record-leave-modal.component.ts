@@ -1,3 +1,4 @@
+import { AuthService } from './../../service/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbDateStruct, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { LeaveService } from '../../service/leave/leave.service';
@@ -32,7 +33,8 @@ export class RecordLeaveModalComponent {
   singleDay:boolean = true;
 
   constructor(private activeModal: NgbActiveModal, calendar: NgbCalendar, 
-    private leaveService: LeaveService, private teamService: TeamService, private dateFormatter: NgbDateParserFormatter) {
+    private leaveService: LeaveService, private teamService: TeamService, private dateFormatter: NgbDateParserFormatter, 
+    private auth: AuthService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
   }
@@ -79,8 +81,8 @@ export class RecordLeaveModalComponent {
       this.fromDate.month = this.toDate.month = this.model.month;
       this.fromDate.year = this.toDate.year = this.model.year;
     }
-    return {name: "Neil Beukes",
-            userId: "ABNB559",
+    return {name: this.auth.getCurrentUserName(),
+            userId: this.auth.getCurrentUserId(),
             fromDate: this.dateFormatter.format(this.fromDate),
             toDate: this.dateFormatter.format(this.toDate),
             team: this.teamService.getSelectedTeamAbr()};

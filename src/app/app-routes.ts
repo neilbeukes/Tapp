@@ -6,6 +6,10 @@ import { LinksComponent } from './links/links-dev/links.component';
 import { HomeComponent } from './home/home.component';
 import { LinksGeneralComponent } from './links/links-general/links-general.component';
 import { LeaveComponent } from './leave/leave.component';
+import { 
+  AuthGuardService as AuthGuard 
+} from './service/authguard/auth-guard.service';
+
 
 export const appRoutes: Routes = [
   {
@@ -14,23 +18,28 @@ export const appRoutes: Routes = [
   },
   {
     path: 'team',
-    component: TeamComponent
+    component: TeamComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: 'links/dev',
-    component: LinksComponent
+    component: LinksComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: 'links/general',
-    component: LinksGeneralComponent
+    component: LinksGeneralComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: 'leave',
-    component: LeaveComponent
+    component: LeaveComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: 'board',
-    component: BoardComponent
+    component: BoardComponent,
+    canActivate: [AuthGuard] 
   },
   {
     path: '**',

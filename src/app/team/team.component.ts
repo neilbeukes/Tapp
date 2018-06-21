@@ -1,3 +1,4 @@
+import { AuthService } from './../service/auth/auth.service';
 import { TeamService } from './../service/team/team.service';
 import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { TeammemberService } from '../service/teammember/teammember.service';
@@ -20,7 +21,8 @@ export class TeamComponent implements OnInit {
   selectedEmployee;
   isDataLoaded = false;
 
-  constructor(private service: TeammemberService, private modalService: NgbModal, private teamService: TeamService) { }
+  constructor(private service: TeammemberService, private modalService: NgbModal, private teamService: TeamService,
+    private auth: AuthService) { }
 
   ngOnInit() {
     this.getTeamMembers();
@@ -63,7 +65,7 @@ export class TeamComponent implements OnInit {
   getTeamMembers() {
     this.service.getAllForTeam(this.teamService.getSelectedTeamAbr())
       .subscribe(response => {
-        this.employees = response.json();
+        this.employees = response;
         this.selectedEmployee = this.employees[0];
         this.isDataLoaded = true;
       });
@@ -90,6 +92,13 @@ export class TeamComponent implements OnInit {
   showAlert(value: boolean, text: string) {
     this.alertVisible = value;
     this.alertText = text;
+  }
+
+  isAdmin() {
+    if (this.auth.getCurrentUserId().toLowerCase() == 'abnb559')
+      return false;
+    else
+      return true;
   }
 
 }

@@ -1,0 +1,23 @@
+<div class="modal-header">
+    <h4 class="modal-title">Remove recorded leave</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <div class="dropdown" ngbDropdown>
+      <button class="btn btn-secondary dropdown-toggle" type="button" id="linkdropdown" 
+      data-toggle="dropdown" ngbDropdownToggle>
+      {{selectedLeave.fromDate}} to {{selectedLeave.toDate}}
+      </button>
+      <div class="dropdown-menu" ngbDropdownMenu>
+        <button class="dropdown-item" *ngFor="let leave of leave | deleteLeave : userId" (click)="setLeave(leave)">{{leave.fromDate}} to {{leave.toDate}}</button>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" (click)="close(true)" class="btn btn-success">
+      Yes</button>
+    <button type="submit" (click)="close(false)" class="btn btn-danger">
+      No</button>
+  </div>

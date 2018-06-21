@@ -1,3 +1,4 @@
+import { TeamService } from './../service/team/team.service';
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { TeamSelectModalComponent } from '../modals/team-select-modal/team-select-modal.component';
@@ -10,7 +11,15 @@ import { NgbModal, NgbActiveModal, NgbModalOptions } from '@ng-bootstrap/ng-boot
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  costCentre;
+  manager;
+  switchBoard;
+
+  constructor(private ts: TeamService) { 
+    this.costCentre = ts.getSelectedCostCentre();
+    this.switchBoard = ts.getSelectedSwitchBoard();
+    this.manager = ts.getSelectedManager();
+  }
 
   ngOnInit() {
     }

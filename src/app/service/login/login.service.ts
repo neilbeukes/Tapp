@@ -11,8 +11,9 @@ export class LoginService {
 
   constructor(private modalService:  NgbModal, private authService: AuthService) { }
 
-  login():Promise<any>{
+  login(){
     var myModel = this.modalService.open(LoginModalComponent)
-    return myModel.result
+    myModel.result.then(response =>{
+    })
   }
 }

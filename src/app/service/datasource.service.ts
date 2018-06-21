@@ -1,12 +1,13 @@
+import { environment } from './../../environments/environment';
 import { TeamService } from './team/team.service';
 import { BadInput } from './../common/bad-input';
 import { NotFoundError } from './../common/not-fournd-error';
 import { AppError } from './../common/app-error';
-import { Http, RequestOptions } from '@angular/http';
+import { RequestOptions } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError, } from 'rxjs';
 import { map, filter, scan, catchError } from 'rxjs/operators';
-import { HttpHeaders } from '@angular/common/http';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +16,11 @@ export class DataService {
 
   headers;
 
-  constructor(private url: string, private http: Http) { 
+  url;
+
+  constructor(url: string, private http: HttpClient) { 
     this.headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    this.url = environment.apiEndpoint + url;
   }
 
   getAll() {

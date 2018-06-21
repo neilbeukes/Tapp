@@ -1,3 +1,7 @@
+import { DeleteleavemodalComponent } from './../modals/delete-leave-modal/delete-leave-modal.component';
+import { AuthService } from './../service/auth/auth.service';
+import { AuthGuardService } from './../service/authguard/auth-guard.service';
+import { Leave } from './../service/leave/leave';
 import { TeamService } from './../service/team/team.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbDateStruct, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
@@ -31,7 +35,7 @@ export class LeaveComponent implements OnInit {
   toDate: NgbDateStruct;
 
   constructor(private modalService: NgbModal, private leaveService: LeaveService, private calendar: NgbCalendar,
-    private dateFormatter: NgbDateParserFormatter, private teamService: TeamService) {
+    private dateFormatter: NgbDateParserFormatter, private teamService: TeamService, private auth: AuthService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getToday();
   }
@@ -65,9 +69,20 @@ export class LeaveComponent implements OnInit {
     })
   }
 
+  deleteLeave() {
+    const modalRef = this.modalService.open(DeleteleavemodalComponent);
+    console.log(this.leaveRecords);
+    modalRef.componentInstance.setContent(this.leaveRecords, this.auth.getCurrentUserId());
+    modalRef.result.then(result => {
+      this.getLeave();
+    }).catch(err => {
+      console.log("modal dissmisssed");
+    })
+  }
+
   getLeave() {
     this.leaveService.getAllForTeam(this.teamService.getSelectedTeamAbr()).subscribe(response => {
-      var records = response.json();
+      var records = response as Array<Leave>;
       for (var i = 0; i < records.length; i++) {
         if (records[i].toDate < this.dateFormatter.format(this.calendar.getToday())) {
           if (i !== -1) {

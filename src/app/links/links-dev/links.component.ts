@@ -29,7 +29,7 @@ export class LinksComponent implements OnInit {
 
   getLinks() {
     this.devLinksService.getAll().subscribe(response => {
-      this.links = response.json();
+      this.links = response;
       this.dataLoaded = true;
     });
     this.applications = this.devLinksService.getApplications();

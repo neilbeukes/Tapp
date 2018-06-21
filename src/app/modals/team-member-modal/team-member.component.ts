@@ -30,6 +30,7 @@ export class TeamMemberComponent {
 
   addTeamMember() {
     this.teamMember.team = this.teamService.getSelectedTeamAbr();
+    this.teamMember.USERID = this.teamMember.USERID.toUpperCase();
     this.tmService.add(this.teamMember)
       .subscribe(response => {
         this.activeModal.close({ alertText: "Team member added successfully" });

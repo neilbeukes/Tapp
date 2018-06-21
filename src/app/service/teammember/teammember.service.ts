@@ -1,4 +1,4 @@
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import { DataService } from './../datasource.service';
 import { Injectable } from '@angular/core';
 import { TeamService } from '../team/team.service';
@@ -8,7 +8,7 @@ import { TeamService } from '../team/team.service';
 })
 export class TeammemberService extends DataService {
 
-  constructor(http: Http, private teamService: TeamService) {
-    super('http://localhost:3000/teammember', http);
+  constructor(http: HttpClient, private teamService: TeamService) {
+    super('/teammember', http);
   }
 }

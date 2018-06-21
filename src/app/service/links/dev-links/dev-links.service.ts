@@ -1,14 +1,14 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { DataService } from '../../datasource.service';
-import { Http } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DevLinksService extends DataService {
 
-  constructor(http: Http) {
-    super("http://localhost:3000/links/dev", http)
+  constructor(http: HttpClient) {
+    super("/links/dev", http)
   }
 
   getApplications(): Array<any> {

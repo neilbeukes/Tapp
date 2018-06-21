@@ -1,3 +1,4 @@
+import { DeleteLinksPipe } from './common/pipes/deleteLeave.pipe';
 import { AuthService } from './service/auth/auth.service';
 import { TeammemberService } from './service/teammember/teammember.service';
 import { DevLinksService } from './service/links/dev-links/dev-links.service';
@@ -35,6 +36,10 @@ import { BoardComponent } from './board/board.component';
 import { BoardService } from './service/board/board.service';
 import { LoginModalComponent } from './modals/login-modal/login-modal.component';
 import { LoginService } from './service/login/login.service';
+import { AuthGuardService } from './service/authguard/auth-guard.service';
+import { JwtModule } from '@auth0/angular-jwt';
+import { HttpClientModule } from '@angular/common/http';
+import { DeleteleavemodalComponent } from './modals/delete-leave-modal/delete-leave-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +52,7 @@ import { LoginService } from './service/login/login.service';
     LinksGeneralComponent,
     SearchPipe,
     DevLinksPipe,
+    DeleteLinksPipe,
     TeamMemberComponent,
     ConfirmationModalComponent,
     TeamSelectModalComponent,
@@ -56,15 +62,27 @@ import { LoginService } from './service/login/login.service';
     RecordLeaveModalComponent,
     BoardMessageModalComponent,
     BoardComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    DeleteleavemodalComponent
   ],
   imports: [
     HttpModule,
     BrowserModule,
     FormsModule,
+    HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => {
+          return localStorage.getItem('token');
+        },
+        authScheme: '',
+        whitelistedDomains: ['localhost:3000'],
+        blacklistedRoutes: ['localhost:3000/auth']
+      }
+    }),
     NgbModule.forRoot(), 
     RouterModule.forRoot(
-      appRoutes
+      appRoutes, {onSameUrlNavigation: 'reload'}
       // { enableTracing: true } // <-- debugging purposes only
     )
   ],
@@ -78,6 +96,7 @@ import { LoginService } from './service/login/login.service';
     BoardService,
     AuthService,
     LoginService,
+    AuthGuardService,
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   entryComponents: [
@@ -88,7 +107,8 @@ import { LoginService } from './service/login/login.service';
     DeleteLinksModalComponent,
     RecordLeaveModalComponent,
     BoardMessageModalComponent,
-    LoginModalComponent
+    LoginModalComponent,
+    DeleteleavemodalComponent
   ],
   bootstrap: [AppComponent]
 })

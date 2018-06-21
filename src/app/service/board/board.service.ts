@@ -1,5 +1,5 @@
+import { HttpClient } from '@angular/common/http';
 import { DataService } from './../datasource.service';
-import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { extend } from 'webdriver-js-extender';
 
@@ -8,7 +8,7 @@ import { extend } from 'webdriver-js-extender';
 })
 export class BoardService extends DataService{
 
-  constructor(http: Http) {
-    super("http://localhost:3000/messages",http);
+  constructor(http: HttpClient) {
+    super("/messages",http);
    }
 }

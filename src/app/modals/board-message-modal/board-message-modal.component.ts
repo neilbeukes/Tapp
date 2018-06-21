@@ -1,3 +1,5 @@
+import { Message } from './../../service/board/Message';
+import { AuthService } from './../../service/auth/auth.service';
 import { BoardComponent } from './../../board/board.component';
 import { TeamService } from './../../service/team/team.service';
 import { BoardService } from './../../service/board/board.service';
@@ -12,7 +14,7 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 })
 export class BoardMessageModalComponent implements OnInit {
 
-  newMessage = {
+  newMessage: Message = {
     team: "",
     userId: "",
     userName: "",
@@ -22,20 +24,39 @@ export class BoardMessageModalComponent implements OnInit {
     body: ""
   };
 
+  edit = false;
+
   constructor(private activeModal: NgbActiveModal, private boardService: BoardService, private teamService: TeamService
-    , private calender: NgbCalendar, private formatter: NgbDateParserFormatter) { }
+    , private calender: NgbCalendar, private formatter: NgbDateParserFormatter, private auth: AuthService) { }
 
   ngOnInit() {
   }
 
-  postNewMessage(){
-    this.newMessage.userId = "ABNB559";
-    this.newMessage.userName = "Neil Beukes";
-    this.newMessage.team = this.teamService.getSelectedTeamAbr();
-    console.log(this.newMessage);
-    this.boardService.add(this.newMessage).subscribe(response => {
+  postNewMessage() {
+
+    if (this.edit) {
+      this.updateMessage();
+    } else {
+      this.newMessage.userId = this.auth.getCurrentUserId();
+      this.newMessage.userName = this.auth.getCurrentUserName();
+      this.newMessage.team = this.teamService.getSelectedTeamAbr();
+      console.log(this.newMessage);
+      this.boardService.add(this.newMessage).subscribe(response => {
+        console.log(response);
+        this.activeModal.close();
+      });
+    }
+  }
+
+  setContentEdit(message: Message) {
+    this.newMessage = message;
+    this.edit = true;
+  }
+
+  updateMessage() {
+    this.boardService.update(this.newMessage).subscribe(response => {
       console.log(response);
       this.activeModal.close();
-    });
+    })
   }
 }

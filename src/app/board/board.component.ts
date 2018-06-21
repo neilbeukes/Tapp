@@ -1,3 +1,6 @@
+import { MessageEdit } from './../service/board/MessageEdit';
+import { Message } from './../service/board/Message';
+import { AuthService } from './../service/auth/auth.service';
 import { TeamService } from './../service/team/team.service';
 import { BoardService } from './../service/board/board.service';
 import { BoardMessageModalComponent } from './../modals/board-message-modal/board-message-modal.component';
@@ -13,17 +16,19 @@ import { NgbModal, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-
 })
 export class BoardComponent implements OnInit {
 
-  messages = [];
-  messagesNormal = [];
-  messagesPriority = [];
+  messages: MessageEdit[];
+  messagesNormal: MessageEdit[];
+  messagesPriority: MessageEdit[];
 
   isDataLoaded = false;
 
-  constructor(private router: Router, private modalService: NgbModal, private boardService: BoardService, 
-    private teamService: TeamService, private calender: NgbCalendar, private formatter: NgbDateParserFormatter) { }
+  constructor(private router: Router, private modalService: NgbModal, private boardService: BoardService,
+    private teamService: TeamService, private calender: NgbCalendar, private formatter: NgbDateParserFormatter,
+    private auth: AuthService) { }
 
   ngOnInit() {
-    this.getMessages();
+    if (this.auth.isAuthenticated())
+      this.getMessages();
   }
 
   inBoardRoute() {
@@ -43,10 +48,8 @@ export class BoardComponent implements OnInit {
   }
 
   getMessages() {
-    console.log("in getMessages");
     this.boardService.getAllForTeam(this.teamService.getSelectedTeamAbr()).subscribe(response => {
-      console.log(response.json());
-      this.splitMessages(response.json());
+      this.splitMessages(response);
     }
     )
   }
@@ -54,7 +57,7 @@ export class BoardComponent implements OnInit {
   splitMessages(messages) {
     this.messagesPriority = [];
     this.messagesNormal = [];
-    messages = this.sortMessages(messages); 
+    messages = this.sortMessages(messages);
     for (var i = 0; i < messages.length; i++) {
       if (messages[i].priority) {
         this.messagesPriority.push(messages[i]);
@@ -80,4 +83,24 @@ export class BoardComponent implements OnInit {
     return messages;
   }
 
+  canEditMessage(message: MessageEdit){
+    console.log(message)
+    if ((message.userId == this.auth.getCurrentUserId()) || message.userId == "abnb559"){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  editMessage(message: MessageEdit){
+    console.log("open modal");
+    const modalRef = this.modalService.open(BoardMessageModalComponent);
+    modalRef.componentInstance.setContentEdit(message);
+    modalRef.result.then(result => {
+      // this.showAlert(true, result.alertText);
+      this.getMessages();
+    }).catch(err => {
+      console.log("modal dissmisssed");
+    })
+  }
 }
