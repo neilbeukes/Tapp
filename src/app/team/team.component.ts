@@ -100,5 +100,4 @@ export class TeamComponent implements OnInit {
     else
       return true;
   }
-
 }
