@@ -3,4 +3,5 @@ export interface AuthResponseObject{
     username: string;
     token: string;
     userId: string;
+    found: boolean;
 }

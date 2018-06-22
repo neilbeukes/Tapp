@@ -9,6 +9,6 @@ import { TeamService } from '../team/team.service';
 export class LeaveService extends DataService {
 
     constructor(http: HttpClient, private teamService: TeamService) {
-    super("/leave",http)
+    super("/leave",http);
    }
 }

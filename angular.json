@@ -44,14 +44,6 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true
-            },
-            "development": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.dev.ts"
-                }
-              ]
             }
           }
         },
@@ -63,9 +55,6 @@
           "configurations": {
             "production": {
               "browserTarget": "Tapp:build:production"
-            },
-            "development": {
-              "browserTarget": "Tapp:build:development"
             }
           }
         },

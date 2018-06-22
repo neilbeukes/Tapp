@@ -11,7 +11,7 @@ export class DevLinksModalComponent implements OnInit {
 
   title = "Add Link for the selected enviroment"
   devLink:any = {};
-  constructor(private activeModal: NgbActiveModal, private devLinksService: DevLinksService) { }
+  constructor(public activeModal: NgbActiveModal, private devLinksService: DevLinksService) { }
 
   ngOnInit() {
   }

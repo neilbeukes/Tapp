@@ -13,7 +13,7 @@ export class LoginModalComponent implements OnInit {
   user: User = { username: '', password: '' };
   alert = false;
 
-  constructor(private activeModal: NgbActiveModal, private auth: AuthService) { }
+  constructor(public activeModal: NgbActiveModal, private auth: AuthService) { }
 
   ngOnInit() {
   }

@@ -1,3 +1,4 @@
+import { User } from './../../service/login/user';
 import { TeamComponent } from './../../team/team.component';
 import { TeammemberService } from './../../service/teammember/teammember.service';
 import { Component, OnInit, Injectable } from '@angular/core';
@@ -16,7 +17,7 @@ export class TeamMemberComponent {
   public title = "";
   public button = "";
   teamMember:any = {};
-  constructor(private activeModal: NgbActiveModal, private tmService: TeammemberService, private teamService: TeamService) { }
+  constructor(public activeModal: NgbActiveModal, private tmService: TeammemberService, private teamService: TeamService) { }
 
   submit() {
     if (this.button === "Add") {
@@ -33,6 +34,12 @@ export class TeamMemberComponent {
     this.teamMember.USERID = this.teamMember.USERID.toUpperCase();
     this.tmService.add(this.teamMember)
       .subscribe(response => {
+
+        //if user is creating their profile the first time it assigns newly created username to current user
+        if (this.title == "Please fill in your profile"){
+          localStorage.setItem('username', this.teamMember.NAME + ' ' + this.teamMember.SURNAME);
+        }
+
         this.activeModal.close({ alertText: "Team member added successfully" });
       });
   }

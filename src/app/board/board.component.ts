@@ -85,7 +85,7 @@ export class BoardComponent implements OnInit {
 
   canEditMessage(message: MessageEdit){
     console.log(message)
-    if ((message.userId == this.auth.getCurrentUserId()) || message.userId == "abnb559"){
+    if ((message.userId == this.auth.getCurrentUserId())){
       return true;
     }else{
       return false;

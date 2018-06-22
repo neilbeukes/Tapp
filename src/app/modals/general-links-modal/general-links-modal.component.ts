@@ -11,7 +11,7 @@ export class GeneralLinksModalComponent implements OnInit {
 
   title = "Add general url"
   generalLink:any = {};
-  constructor(private activeModal: NgbActiveModal, private generalLinksService: GeneralLinksService) { }
+  constructor(public activeModal: NgbActiveModal, private generalLinksService: GeneralLinksService) { }
 
   ngOnInit() {
   }

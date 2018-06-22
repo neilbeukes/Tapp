@@ -26,7 +26,7 @@ export class BoardMessageModalComponent implements OnInit {
 
   edit = false;
 
-  constructor(private activeModal: NgbActiveModal, private boardService: BoardService, private teamService: TeamService
+  constructor(public activeModal: NgbActiveModal, private boardService: BoardService, private teamService: TeamService
     , private calender: NgbCalendar, private formatter: NgbDateParserFormatter, private auth: AuthService) { }
 
   ngOnInit() {

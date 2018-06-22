@@ -32,7 +32,7 @@ export class RecordLeaveModalComponent {
   selectedDate;
   singleDay:boolean = true;
 
-  constructor(private activeModal: NgbActiveModal, calendar: NgbCalendar, 
+  constructor(public activeModal: NgbActiveModal, calendar: NgbCalendar, 
     private leaveService: LeaveService, private teamService: TeamService, private dateFormatter: NgbDateParserFormatter, 
     private auth: AuthService) {
     this.fromDate = calendar.getToday();

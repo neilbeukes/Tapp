@@ -4,10 +4,9 @@ import { TeammemberService } from './service/teammember/teammember.service';
 import { DevLinksService } from './service/links/dev-links/dev-links.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, ErrorHandler } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import fontawesome from '@fortawesome/fontawesome';
 import { HttpModule } from '@angular/http';
 import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from './app.component';
@@ -42,6 +41,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { DeleteleavemodalComponent } from './modals/delete-leave-modal/delete-leave-modal.component';
 import { GeneralLinksModalComponent } from './modals/general-links-modal/general-links-modal.component';
 
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,9 +77,7 @@ import { GeneralLinksModalComponent } from './modals/general-links-modal/general
     HttpClientModule,
     JwtModule.forRoot({
       config: {
-        tokenGetter: () => {
-          return localStorage.getItem('token');
-        },
+        tokenGetter: tokenGetter,
         authScheme: '',
         whitelistedDomains: ['localhost:3000'],
         blacklistedRoutes: ['localhost:3000/auth']

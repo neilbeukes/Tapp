@@ -7,10 +7,10 @@
 <div class="modal-body">
   <form>
     <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="user.username" id="username" placeholder="username (ABnumber)" name="username">
+      <input type="text" class="form-control" [(ngModel)]="user.username" id="username" placeholder="username (AB number)" name="username">
     </div>
     <div class="form-group">
-      <input type="password" class="form-control" [(ngModel)]="user.password" id="password" placeholder="Password" name="password">
+      <input type="password" class="form-control" [(ngModel)]="user.password" id="password" placeholder="Password" name="password" (keyup.enter)="submit()">
     </div>
   </form>
   <div *ngIf="alert" style="margin-top: 25px">
