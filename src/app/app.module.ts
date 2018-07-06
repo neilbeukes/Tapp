@@ -7,7 +7,6 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { HttpModule } from '@angular/http';
 import { CookieService } from 'ngx-cookie-service';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -71,7 +70,6 @@ export function tokenGetter() {
     GeneralLinksModalComponent
   ],
   imports: [
-    HttpModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
@@ -83,7 +81,7 @@ export function tokenGetter() {
         blacklistedRoutes: ['localhost:3000/auth']
       }
     }),
-    NgbModule.forRoot(), 
+    NgbModule.forRoot(),
     RouterModule.forRoot(
       appRoutes, {onSameUrlNavigation: 'reload'}
       // { enableTracing: true } // <-- debugging purposes only
@@ -103,9 +101,9 @@ export function tokenGetter() {
     {provide: ErrorHandler, useClass: AppErrorHandler}
   ],
   entryComponents: [
-    TeamMemberComponent, 
-    ConfirmationModalComponent, 
-    TeamSelectModalComponent, 
+    TeamMemberComponent,
+    ConfirmationModalComponent,
+    TeamSelectModalComponent,
     DevLinksModalComponent,
     DeleteLinksModalComponent,
     RecordLeaveModalComponent,

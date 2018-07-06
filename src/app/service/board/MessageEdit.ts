@@ -1,4 +1,4 @@
-export interface MessageEdit{
+export interface MessageEdit {
     subject: string;
     body: string;
     priority: boolean;

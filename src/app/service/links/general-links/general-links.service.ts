@@ -8,6 +8,6 @@ import { DataService } from '../../datasource.service';
 export class GeneralLinksService extends DataService {
 
   constructor(http: HttpClient) {
-    super("/links/general", http)
+    super('/links/general', http);
   }
 }

@@ -1,4 +1,4 @@
-export interface AuthResponseObject{
+export interface AuthResponseObject {
     auth: boolean;
     username: string;
     token: string;

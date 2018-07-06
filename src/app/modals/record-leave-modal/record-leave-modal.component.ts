@@ -30,10 +30,10 @@ export class RecordLeaveModalComponent {
   fromDate: NgbDateStruct;
   toDate: NgbDateStruct;
   selectedDate;
-  singleDay:boolean = true;
+  singleDay = true;
 
-  constructor(public activeModal: NgbActiveModal, calendar: NgbCalendar, 
-    private leaveService: LeaveService, private teamService: TeamService, private dateFormatter: NgbDateParserFormatter, 
+  constructor(public activeModal: NgbActiveModal, calendar: NgbCalendar,
+    private leaveService: LeaveService, private teamService: TeamService, private dateFormatter: NgbDateParserFormatter,
     private auth: AuthService) {
     this.fromDate = calendar.getToday();
     this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
@@ -58,16 +58,17 @@ export class RecordLeaveModalComponent {
 
   dateToString(): string {
     try {
-      if (this.fromDate.day == null || this.toDate.day == null)
-      return "please pick a date";
-      else
-        return  this.dateFormatter.format(this.fromDate) + " to " + this.dateFormatter.format(this.toDate)
-    } catch{}
-    return "please pick a date";
+      if (this.fromDate.day == null || this.toDate.day == null) {
+      return 'please pick a date';
+      } else {
+        return  this.dateFormatter.format(this.fromDate) + ' to ' + this.dateFormatter.format(this.toDate);
+      }
+    } catch {}
+    return 'please pick a date';
   }
 
-  recordLeave(){
-    let leaveObject = this.createleaveObject();
+  recordLeave() {
+    const leaveObject = this.createleaveObject();
     console.log(leaveObject);
     this.leaveService.add(leaveObject).subscribe(response => {
       console.log(response);
@@ -75,8 +76,8 @@ export class RecordLeaveModalComponent {
     });
   }
 
-  createleaveObject(){
-    if(this.singleDay){
+  createleaveObject() {
+    if (this.singleDay) {
       this.fromDate.day = this.toDate.day = this.model.day;
       this.fromDate.month = this.toDate.month = this.model.month;
       this.fromDate.year = this.toDate.year = this.model.year;

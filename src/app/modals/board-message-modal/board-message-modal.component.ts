@@ -15,13 +15,13 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 export class BoardMessageModalComponent implements OnInit {
 
   newMessage: Message = {
-    team: "",
-    userId: "",
-    userName: "",
+    team: '',
+    userId: '',
+    userName: '',
     date: this.formatter.format(this.calender.getToday()),
     priority: false,
-    subject: "",
-    body: ""
+    subject: '',
+    body: ''
   };
 
   edit = false;
@@ -57,6 +57,6 @@ export class BoardMessageModalComponent implements OnInit {
     this.boardService.update(this.newMessage).subscribe(response => {
       console.log(response);
       this.activeModal.close();
-    })
+    });
   }
 }

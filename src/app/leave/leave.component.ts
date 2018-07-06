@@ -29,7 +29,7 @@ export class LeaveComponent implements OnInit {
 
   leaveRecords;
 
-  //datePicker
+  // datePicker
   hoveredDate: NgbDateStruct;
   fromDate: NgbDateStruct;
   toDate: NgbDateStruct;
@@ -65,8 +65,8 @@ export class LeaveComponent implements OnInit {
     modalRef.result.then(result => {
       this.getLeave();
     }).catch(err => {
-      console.log("modal dissmisssed");
-    })
+      console.log('modal dissmisssed');
+    });
   }
 
   deleteLeave() {
@@ -76,26 +76,27 @@ export class LeaveComponent implements OnInit {
     modalRef.result.then(result => {
       this.getLeave();
     }).catch(err => {
-      console.log("modal dissmisssed");
-    })
+      console.log('modal dissmisssed');
+    });
   }
 
   getLeave() {
     this.leaveService.getAllForTeam(this.teamService.getSelectedTeamAbr()).subscribe(response => {
-      var records = response as Array<Leave>;
-      for (var i = 0; i < records.length; i++) {
+      const records = response as Array<Leave>;
+      for (let i = 0; i < records.length; i++) {
         if (records[i].toDate < this.dateFormatter.format(this.calendar.getToday())) {
           if (i !== -1) {
             records.splice(i, 1);
           }
-        }else if (new Date(records[i].fromDate).getMonth() > (new Date(this.dateFormatter.format(this.calendar.getToday())).getMonth()+2)){
+        } else if (new Date(records[i].fromDate).getMonth() > (new Date
+          (this.dateFormatter.format(this.calendar.getToday())).getMonth() + 2)) {
           if (i !== -1) {
             records.splice(i, 1);
           }
         }
       }
       this.leaveRecords = this.sortRecords(records);
-    })
+    });
   }
 
   setCalender(record) {
@@ -104,12 +105,12 @@ export class LeaveComponent implements OnInit {
   }
 
   sortRecords(records) {
-    for (var i = 0, len = records.length; i < len - 1; i++) {
-      for (var j = 0, len = records.length; j < len - 1 - i; j++) {
-        var testi = new Date(records[j].fromDate);
-        var testj = new Date(records[j + 1].fromDate);
+    for (let i = 0, len = records.length; i < len - 1; i++) {
+      for (let j = 0, lent = records.length; j < lent - 1 - i; j++) {
+        const testi = new Date(records[j].fromDate);
+        const testj = new Date(records[j + 1].fromDate);
         if (testi > testj) {
-          var z = records[j];
+          const z = records[j];
           records[j] = records[j + 1];
           records[j + 1] = z;
         }

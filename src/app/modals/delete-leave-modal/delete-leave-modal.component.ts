@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './delete-leave-modal.component.html',
   styleUrls: ['./delete-leave-modal.component.css']
 })
-export class DeleteleavemodalComponent{
+export class DeleteleavemodalComponent {
 
   leave;
   selectedLeave;
@@ -19,19 +19,21 @@ export class DeleteleavemodalComponent{
   setContent(leave, userId: string) {
     this.leave = leave;
     this.userId = userId;
-    this.selectedLeave = leave[0]
+    this.selectedLeave = leave[0];
   }
 
   close(response: boolean) {
-    if (response == false)
+    if (response === false) {
       this.activeModal.close(response);
-    else
-      this.leaveService.delete(this.selectedLeave._id).subscribe(response => {
+    } else {
+      this.leaveService.delete(this.selectedLeave._id).subscribe( res => {
+        console.log(res);
         this.activeModal.close(true);
       });
+    }
   }
 
-  setLeave(leave){
+  setLeave(leave) {
     this.selectedLeave = leave;
   }
 

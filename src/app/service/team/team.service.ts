@@ -8,42 +8,42 @@ import { TeamSelectModalComponent } from '../../modals/team-select-modal/team-se
 @Injectable({
   providedIn: 'root'
 })
-export class TeamService extends DataService{
+export class TeamService extends DataService {
 
-  constructor(http: HttpClient, private cookieService: CookieService, private modalService: NgbModal ) { 
+  constructor(http: HttpClient, private cookieService: CookieService, private modalService: NgbModal ) {
     super('/team', http);
   }
 
-  getSelectedTeamName(): string{
+  getSelectedTeamName(): string {
     return this.cookieService.get('teamName');
   }
 
-  getSelectedTeamAbr(): string{
+  getSelectedTeamAbr(): string {
     return this.cookieService.get('teamAbr');
   }
 
-  getSelectedSwitchBoard(): string{
+  getSelectedSwitchBoard(): string {
     return this.cookieService.get('switchBoard');
   }
 
-  getSelectedManager(): string{
+  getSelectedManager(): string {
     return this.cookieService.get('manager');
   }
 
-  getSelectedCostCentre(): string{
+  getSelectedCostCentre(): string {
     return this.cookieService.get('costCentre');
   }
 
   changeTeam(callback) {
     return this.getAll().subscribe(response => {
-      console.log("getAll teams returned")
-      this.showModal(response).then(()=> {
+      console.log('getAll teams returned');
+      this.showModal(response).then(() => {
         callback();
       });
       });
   }
 
-  showModal(teams){
+  showModal(teams) {
     const modalRef = this.modalService.open(TeamSelectModalComponent);
     modalRef.componentInstance.setContent(teams);
     modalRef.componentInstance.isLoaded = true;

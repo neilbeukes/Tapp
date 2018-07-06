@@ -16,14 +16,14 @@ export class LinksGeneralComponent implements OnInit {
   constructor(private gls: GeneralLinksService, private ngModel: NgbModal) { }
 
   ngOnInit() {
-    this.getLinks()
+    this.getLinks();
   }
 
   getLinks() {
     this.gls.getAll().subscribe(response => {
       this.links = response;
       this.dataLoaded = true;
-    })
+    });
   }
 
   addLink() {
@@ -31,7 +31,7 @@ export class LinksGeneralComponent implements OnInit {
     modalRef.result.then(result => {
       this.getLinks();
     }).catch(err => {
-      console.log("modal dissmisssed");
-    })
+      console.log('modal dissmisssed');
+    });
   }
 }

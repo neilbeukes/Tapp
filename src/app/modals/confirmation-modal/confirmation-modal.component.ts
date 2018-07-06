@@ -1,23 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap'; 
+import { NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-confirmation-modal',
   templateUrl: './confirmation-modal.component.html',
   styleUrls: ['./confirmation-modal.component.css']
 })
-export class ConfirmationModalComponent{
+export class ConfirmationModalComponent {
 
-  title = "Confirmation"; 
-  body = "Are you sure?";
-  constructor(public activeModal: NgbActiveModal) { 
+  title = 'Confirmation';
+  body = 'Are you sure?';
+  constructor(public activeModal: NgbActiveModal) {
   }
 
-  close(response: boolean){
+  close(response: boolean) {
     this.activeModal.close(response);
   }
 
-  setContent(title, body){
+  setContent(title, body) {
     this.title = title;
     this.body = body;
   }

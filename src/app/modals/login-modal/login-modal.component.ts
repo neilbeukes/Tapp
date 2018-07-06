@@ -23,10 +23,10 @@ export class LoginModalComponent implements OnInit {
     this.auth.authenticate(this.user, (response) => {
       if (response) {
         this.activeModal.close(this.user);
-        this.alert = false
-      }
-      else
+        this.alert = false;
+      } else {
         this.alert = true;
+      }
     });
   }
 

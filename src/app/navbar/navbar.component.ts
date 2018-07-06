@@ -14,37 +14,40 @@ export class NavbarComponent implements OnInit {
   isCollapsed = false;
   selectedTeam = '';
 
-  constructor(private teamService: TeamService, private loginService: LoginService, 
+  constructor(private teamService: TeamService, private loginService: LoginService,
     private auth: AuthService, private router: Router) {
   }
 
   ngOnInit() {
-    if (this.teamService.getSelectedTeamName() == '')
+    if (this.teamService.getSelectedTeamName() === '') {
       this.changeTeam();
-    else
+    } else {
       this.selectedTeam = this.teamService.getSelectedTeamName();
+    }
   }
 
   changeTeam() {
     this.teamService.changeTeam(() => {
-      console.log("updating team name");
+      console.log('updating team name');
       this.selectedTeam = this.teamService.getSelectedTeamName();
       this.router.navigate(['']);
     });
   }
 
-  login(){
-    if (this.auth.isAuthenticated())
-      this.auth.logout()
-    else
-      this.loginService.login()
+  login() {
+    if (this.auth.isAuthenticated()) {
+      this.auth.logout();
+    } else {
+      this.loginService.login();
+    }
   }
 
-  getCurrentUser(): string{
-    if (this.auth.isAuthenticated())
+  getCurrentUser(): string {
+    if (this.auth.isAuthenticated()) {
       return this.auth.getCurrentUserId() + ' : Logout';
-    else
+    } else {
       return 'Login';
+    }
   }
-  
+
 }

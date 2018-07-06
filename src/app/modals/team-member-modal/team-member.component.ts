@@ -14,16 +14,15 @@ import { TeamService } from '../../service/team/team.service';
 
 export class TeamMemberComponent {
 
-  public title = "";
-  public button = "";
-  teamMember:any = {};
+  public title = '';
+  public button = '';
+  teamMember: any = {};
   constructor(public activeModal: NgbActiveModal, private tmService: TeammemberService, private teamService: TeamService) { }
 
   submit() {
-    if (this.button === "Add") {
+    if (this.button === 'Add') {
       this.addTeamMember();
-    }
-    else if (this.button === "Update") {
+    } else if (this.button === 'Update') {
       this.updateTeamMember();
     }
 
@@ -35,19 +34,19 @@ export class TeamMemberComponent {
     this.tmService.add(this.teamMember)
       .subscribe(response => {
 
-        //if user is creating their profile the first time it assigns newly created username to current user
-        if (this.title == "Please fill in your profile"){
+        // if user is creating their profile the first time it assigns newly created username to current user
+        if (this.title === 'Please fill in your profile') {
           localStorage.setItem('username', this.teamMember.NAME + ' ' + this.teamMember.SURNAME);
         }
 
-        this.activeModal.close({ alertText: "Team member added successfully" });
+        this.activeModal.close({ alertText: 'Team member added successfully' });
       });
   }
 
   updateTeamMember() {
     this.tmService.update(this.teamMember)
       .subscribe(response => {
-        this.activeModal.close({ alertText: "Team member updated successfully" });
+        this.activeModal.close({ alertText: 'Team member updated successfully' });
       });
   }
 

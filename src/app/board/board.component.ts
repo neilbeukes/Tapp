@@ -16,9 +16,9 @@ import { NgbModal, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-
 })
 export class BoardComponent implements OnInit {
 
-  messages: MessageEdit[];
-  messagesNormal: MessageEdit[];
-  messagesPriority: MessageEdit[];
+  messages: Array<MessageEdit>;
+  messagesNormal: Array<MessageEdit>;
+  messagesPriority: Array<MessageEdit>;
 
   isDataLoaded = false;
 
@@ -27,38 +27,39 @@ export class BoardComponent implements OnInit {
     private auth: AuthService) { }
 
   ngOnInit() {
-    if (this.auth.isAuthenticated())
+    if (this.auth.isAuthenticated()) {
       this.getMessages();
+    }
   }
 
   inBoardRoute() {
-    return (this.router.url == "/board");
+    return (this.router.url === '/board');
   }
 
   postNewMessage() {
-    console.log("open modal");
+    console.log('open modal');
     const modalRef = this.modalService.open(BoardMessageModalComponent);
-    //modalRef.componentInstance.setContent("Add team member", "Add");
+    // modalRef.componentInstance.setContent("Add team member", "Add");
     modalRef.result.then(result => {
       // this.showAlert(true, result.alertText);
       this.getMessages();
     }).catch(err => {
-      console.log("modal dissmisssed");
-    })
+      console.log('modal dissmisssed');
+    });
   }
 
   getMessages() {
     this.boardService.getAllForTeam(this.teamService.getSelectedTeamAbr()).subscribe(response => {
       this.splitMessages(response);
     }
-    )
+    );
   }
 
   splitMessages(messages) {
-    this.messagesPriority = [];
-    this.messagesNormal = [];
+    this.messagesPriority = Array<MessageEdit>();
+    this.messagesNormal = Array<MessageEdit>();
     messages = this.sortMessages(messages);
-    for (var i = 0; i < messages.length; i++) {
+    for (let i = 0; i < messages.length; i++) {
       if (messages[i].priority) {
         this.messagesPriority.push(messages[i]);
       } else {
@@ -69,12 +70,12 @@ export class BoardComponent implements OnInit {
   }
 
   sortMessages(messages) {
-    for (var i = 0, len = messages.length; i < len - 1; i++) {
-      for (var j = 0, len = messages.length; j < len - 1 - i; j++) {
-        var testi = new Date(messages[j].date);
-        var testj = new Date(messages[j + 1].date);
+    for (let i = 0, len = messages.length; i < len - 1; i++) {
+      for (let j = 0, lent = messages.length; j < lent - 1 - i; j++) {
+        const testi = new Date(messages[j].date);
+        const testj = new Date(messages[j + 1].date);
         if (testi < testj) {
-          var z = messages[j];
+          const z = messages[j];
           messages[j] = messages[j + 1];
           messages[j + 1] = z;
         }
@@ -83,24 +84,24 @@ export class BoardComponent implements OnInit {
     return messages;
   }
 
-  canEditMessage(message: MessageEdit){
-    console.log(message)
-    if ((message.userId == this.auth.getCurrentUserId())){
+  canEditMessage(message: MessageEdit) {
+    console.log(message);
+    if ((message.userId === this.auth.getCurrentUserId())) {
       return true;
-    }else{
+    } else {
       return false;
     }
   }
 
-  editMessage(message: MessageEdit){
-    console.log("open modal");
+  editMessage(message: MessageEdit) {
+    console.log('open modal');
     const modalRef = this.modalService.open(BoardMessageModalComponent);
     modalRef.componentInstance.setContentEdit(message);
     modalRef.result.then(result => {
       // this.showAlert(true, result.alertText);
       this.getMessages();
     }).catch(err => {
-      console.log("modal dissmisssed");
-    })
+      console.log('modal dissmisssed');
+    });
   }
 }

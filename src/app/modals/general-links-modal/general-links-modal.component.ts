@@ -9,20 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneralLinksModalComponent implements OnInit {
 
-  title = "Add general url"
-  generalLink:any = {};
+  title = 'Add general url';
+  generalLink: any = {};
   constructor(public activeModal: NgbActiveModal, private generalLinksService: GeneralLinksService) { }
 
   ngOnInit() {
   }
 
-  submit(){
+  submit() {
       this.addLink();
   }
 
-  addLink(){
+  addLink() {
     this.generalLinksService.add(this.generalLink).subscribe(res => {
-      this.activeModal.close({ alertText: "Link added" });
+      this.activeModal.close({ alertText: 'Link added' });
     });
   }
 

@@ -42,10 +42,11 @@ export class LinksComponent implements OnInit {
   }
 
   isApplicationSelected(application): boolean {
-    if (application.id == this.selectedApplication.id)
+    if (application.id === this.selectedApplication.id) {
       return true;
-    else
+    } else {
       return false;
+    }
   }
 
   selectEnv(env) {
@@ -53,10 +54,11 @@ export class LinksComponent implements OnInit {
   }
 
   isEnvSelected(env): boolean {
-    if (env == this.selectedEnv)
+    if (env === this.selectedEnv) {
       return true;
-    else
+    } else {
       return false;
+    }
   }
 
   addLink() {
@@ -66,19 +68,19 @@ export class LinksComponent implements OnInit {
       this.showAlert(true, result.alertText);
       this.getLinks();
     }).catch(err => {
-      console.log("modal dissmisssed");
-    })
+      console.log('modal dissmisssed');
+    });
   }
 
   deleteLink() {
     const modalRef = this.ngModel.open(DeleteLinksModalComponent);
-    modalRef.componentInstance.setContent("Delete selected link", this.links, this.selectedEnv, this.selectedApplication.name);
+    modalRef.componentInstance.setContent('Delete selected link', this.links, this.selectedEnv, this.selectedApplication.name);
     modalRef.result.then(result => {
-      this.showAlert(result, "Link Deleted");
+      this.showAlert(result, 'Link Deleted');
       this.getLinks();
     }).catch(err => {
-      console.log("modal dissmisssed");
-    })
+      console.log('modal dissmisssed');
+    });
   }
 
   showAlert(value: boolean, text: string) {

@@ -11,7 +11,7 @@ import { DevLinksService } from '../../service/links/dev-links/dev-links.service
 export class DeleteLinksModalComponent {
 
   links;
-  title = "Delete";
+  title = 'Delete';
   selectedLink;
   selectedEnv;
   selectedApp;
@@ -22,20 +22,21 @@ export class DeleteLinksModalComponent {
     this.title = title;
     this.links = links;
     this.selectedLink = links[0];
-    this.selectedApp = selectedApp
+    this.selectedApp = selectedApp;
     this.selectedEnv = selectedEnv;
   }
 
   close(response: boolean) {
-    if (response == false)
+    if (response === false) {
       this.activeModal.close(response);
-    else
-      this.devLinksService.delete(this.selectedLink._id).subscribe(response => {
+    } else {
+      this.devLinksService.delete(this.selectedLink._id).subscribe(res => {
         this.activeModal.close(true);
       });
+    }
   }
 
-  setLink(link){
+  setLink(link) {
     this.selectedLink = link;
   }
 

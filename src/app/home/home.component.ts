@@ -15,7 +15,7 @@ export class HomeComponent implements OnInit {
   manager;
   switchBoard;
 
-  constructor(private ts: TeamService) { 
+  constructor(private ts: TeamService) {
     this.costCentre = ts.getSelectedCostCentre();
     this.switchBoard = ts.getSelectedSwitchBoard();
     this.manager = ts.getSelectedManager();
