@@ -16,7 +16,8 @@ export class DevLinksService extends DataService {
       { id: 1, name: 'EOML' },
       { id: 2, name: 'QMS' },
       { id: 3, name: 'PPHL' },
-      { id: 4, name: 'MLS' }
+      { id: 4, name: 'CVA' },
+      { id: 5, name: 'MLS' }
     ];
   }
 

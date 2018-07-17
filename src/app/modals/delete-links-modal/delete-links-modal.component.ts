@@ -21,7 +21,7 @@ export class DeleteLinksModalComponent {
   setContent(title, links, selectedEnv, selectedApp) {
     this.title = title;
     this.links = links;
-    this.selectedLink = links[0];
+    // this.selectedLink = links[0];
     this.selectedApp = selectedApp;
     this.selectedEnv = selectedEnv;
   }

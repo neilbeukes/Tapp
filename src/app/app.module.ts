@@ -77,8 +77,7 @@ export function tokenGetter() {
       config: {
         tokenGetter: tokenGetter,
         authScheme: '',
-        whitelistedDomains: ['localhost:3000'],
-        blacklistedRoutes: ['localhost:3000/auth']
+        whitelistedDomains: ['localhost:3000', '22.246.130.254:3000', '22.246.130.254', '22.246.130.254:80']
       }
     }),
     NgbModule.forRoot(),

@@ -87,4 +87,15 @@ export class LinksComponent implements OnInit {
     this.alertVisible = value;
     this.alertText = text;
   }
+
+  openExternalLink(link) {
+    let url = '';
+
+    if (!/^http[s]?:\/\//.test(link)) {
+      url += 'http://';
+    }
+
+    url += link;
+    window.open(url, '_blank');
+  }
 }

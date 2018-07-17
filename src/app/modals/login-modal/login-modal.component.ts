@@ -12,14 +12,17 @@ export class LoginModalComponent implements OnInit {
 
   user: User = { username: '', password: '' };
   alert = false;
+  loginButton = false;
 
   constructor(public activeModal: NgbActiveModal, private auth: AuthService) { }
 
   ngOnInit() {
+    this.loginButton = false;
   }
 
   submit() {
     this.alert = false;
+    this.loginButton = true;
     this.auth.authenticate(this.user, (response) => {
       if (response) {
         this.activeModal.close(this.user);

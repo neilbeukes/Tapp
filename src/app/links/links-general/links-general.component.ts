@@ -34,4 +34,15 @@ export class LinksGeneralComponent implements OnInit {
       console.log('modal dissmisssed');
     });
   }
+
+  openExternalLink(link) {
+    let url = '';
+
+    if (!/^http[s]?:\/\//.test(link)) {
+      url += 'http://';
+    }
+
+    url += link;
+    window.open(url, '_blank');
+  }
 }

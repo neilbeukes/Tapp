@@ -132,3 +132,12 @@
   .custom-day.faded {
     background-color: rgba(237,140,76, 0.5);
   }
+
+  .link-style {
+      cursor:pointer;
+      color:blue;
+  }
+
+  .env-select {
+    cursor:pointer;
+}

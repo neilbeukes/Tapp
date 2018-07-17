@@ -6,13 +6,9 @@ import { Injectable } from '@angular/core';
 import { Observable, } from 'rxjs';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
-@Injectable({
-  providedIn: 'root'
-})
 export class DataService {
 
   headers;
-
   url;
 
   constructor(url: string, private http: HttpClient) {
@@ -33,7 +29,6 @@ export class DataService {
   }
 
   delete(id) {
-    console.log('deleting _id: ' + id);
     return this.http.delete(this.url + '/delete/' + id);
     // .catchError(this.handleError)
   }

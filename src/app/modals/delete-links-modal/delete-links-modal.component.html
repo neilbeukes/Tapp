@@ -8,7 +8,8 @@
   <div class="dropdown" ngbDropdown>
     <button class="btn btn-secondary dropdown-toggle" type="button" id="linkdropdown" 
     data-toggle="dropdown" ngbDropdownToggle>
-    {{selectedLink.name}}
+    <span *ngIf="selectedLink == null"> Select Url</span>
+    <span *ngIf="selectedLink != null"> {{selectedLink.name}}</span>
     </button>
     <div class="dropdown-menu" ngbDropdownMenu>
       <button class="dropdown-item" *ngFor="let link of links | devLinks : selectedApp : selectedEnv" (click)="setLink(link)">{{link.name}}</button>

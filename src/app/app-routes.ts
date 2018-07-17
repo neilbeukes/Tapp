@@ -15,32 +15,38 @@ import {
 export const appRoutes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    component: HomeComponent,
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'team',
     component: TeamComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'links/dev',
     component: LinksComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'links/general',
     component: LinksGeneralComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'leave',
     component: LeaveComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
   {
     path: 'board',
     component: BoardComponent,
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard],
+    runGuardsAndResolvers: 'always'
   },
   {
     path: '**',

@@ -6,7 +6,7 @@ import { BoardService } from './../service/board/board.service';
 import { BoardMessageModalComponent } from './../modals/board-message-modal/board-message-modal.component';
 import { NgModel } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { NgbModal, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -19,12 +19,21 @@ export class BoardComponent implements OnInit {
   messages: Array<MessageEdit>;
   messagesNormal: Array<MessageEdit>;
   messagesPriority: Array<MessageEdit>;
+  navigationSubscription;
 
   isDataLoaded = false;
 
   constructor(private router: Router, private modalService: NgbModal, private boardService: BoardService,
     private teamService: TeamService, private calender: NgbCalendar, private formatter: NgbDateParserFormatter,
-    private auth: AuthService) { }
+    private auth: AuthService) {
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      if (e instanceof NavigationEnd) {
+        if (this.auth.isAuthenticated()) {
+          this.getMessages();
+        }
+      }
+    });
+  }
 
   ngOnInit() {
     if (this.auth.isAuthenticated()) {
@@ -85,7 +94,6 @@ export class BoardComponent implements OnInit {
   }
 
   canEditMessage(message: MessageEdit) {
-    console.log(message);
     if ((message.userId === this.auth.getCurrentUserId())) {
       return true;
     } else {

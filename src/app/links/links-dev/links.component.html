@@ -32,19 +32,19 @@
           <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
               <li class="nav-item">
-                <a class="nav-link" (click)="selectEnv('Prod')" [ngClass]="{active: isEnvSelected('Prod')}">Prod</a>
+                <a class="nav-link env-select" (click)="selectEnv('Prod')" [ngClass]="{active: isEnvSelected('Prod')}">Prod</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="selectEnv('UAT')" [ngClass]="{active: isEnvSelected('UAT')}">UAT</a>
+                <a class="nav-link env-select" (click)="selectEnv('UAT')" [ngClass]="{active: isEnvSelected('UAT')}">UAT</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="selectEnv('SIT')" [ngClass]="{active: isEnvSelected('SIT')}">SIT</a>
+                <a class="nav-link env-select" (click)="selectEnv('SIT')" [ngClass]="{active: isEnvSelected('SIT')}">SIT</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" (click)="selectEnv('Dev')" [ngClass]="{active: isEnvSelected('Dev')}">Dev</a>
+                <a class="nav-link env-select" (click)="selectEnv('Dev')" [ngClass]="{active: isEnvSelected('Dev')}">Dev</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" (click)="selectEnv('Tools')" [ngClass]="{active: isEnvSelected('Tools')}">Tools</a>
+                  <a class="nav-link env-select" (click)="selectEnv('Tools')" [ngClass]="{active: isEnvSelected('Tools')}">Tools</a>
                 </li>
             </ul>
           </div>
@@ -54,14 +54,13 @@
             </h4>
             <ul>
               <li *ngFor="let link of links | devLinks : selectedApplication.name : selectedEnv">
-                <p class="card-text">
-                  <a href="{{link.url}}" target="_blank">{{link.name}}</a>
+                <p class="card-text link-style" >
+                  <a (click)="openExternalLink(link.url)" target="_blank">{{link.name}}</a>
                 </p>
               </li>
             </ul>
           </div>
         </div>
-
       </div>
     </div>
   </div>
