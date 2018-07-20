@@ -2,6 +2,7 @@ import { GeneralLinksModalComponent } from './../../modals/general-links-modal/g
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { GeneralLinksService } from '../../service/links/general-links/general-links.service';
+import { DeleteGeneralLinksModalComponent } from '../../modals/delete-general-links-modal/delete-general-links-modal.component';
 
 @Component({
   selector: 'app-links-general',
@@ -28,6 +29,16 @@ export class LinksGeneralComponent implements OnInit {
 
   addLink() {
     const modalRef = this.ngModel.open(GeneralLinksModalComponent);
+    modalRef.result.then(result => {
+      this.getLinks();
+    }).catch(err => {
+      console.log('modal dissmisssed');
+    });
+  }
+
+  deleteLink() {
+    const modalRef = this.ngModel.open(DeleteGeneralLinksModalComponent);
+    modalRef.componentInstance.setContent('Delete selected link', this.links);
     modalRef.result.then(result => {
       this.getLinks();
     }).catch(err => {

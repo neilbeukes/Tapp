@@ -39,6 +39,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { HttpClientModule } from '@angular/common/http';
 import { DeleteleavemodalComponent } from './modals/delete-leave-modal/delete-leave-modal.component';
 import { GeneralLinksModalComponent } from './modals/general-links-modal/general-links-modal.component';
+import { DeleteGeneralLinksModalComponent } from './modals/delete-general-links-modal/delete-general-links-modal.component';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -67,7 +68,8 @@ export function tokenGetter() {
     BoardComponent,
     LoginModalComponent,
     DeleteleavemodalComponent,
-    GeneralLinksModalComponent
+    GeneralLinksModalComponent,
+    DeleteGeneralLinksModalComponent
   ],
   imports: [
     BrowserModule,
@@ -109,7 +111,8 @@ export function tokenGetter() {
     BoardMessageModalComponent,
     LoginModalComponent,
     DeleteleavemodalComponent,
-    GeneralLinksModalComponent
+    GeneralLinksModalComponent,
+    DeleteGeneralLinksModalComponent
   ],
   bootstrap: [AppComponent]
 })

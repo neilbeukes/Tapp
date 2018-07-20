@@ -7,8 +7,15 @@ import { TeamService } from '../team/team.service';
   providedIn: 'root'
 })
 export class LeaveService extends DataService {
+    httpClient: HttpClient;
 
     constructor(http: HttpClient, private teamService: TeamService) {
     super('/leave', http);
+    this.httpClient = http;
+    }
+
+    email(request) {
+      return this.httpClient.post(this.url + '/email', request, this.headers);
+      // .catchError(this.handleError)
    }
 }

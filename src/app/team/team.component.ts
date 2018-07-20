@@ -30,6 +30,7 @@ export class TeamComponent implements OnInit {
 
   selectEmployee(employee) {
     this.selectedEmployee = employee;
+    console.log(this.selectedEmployee.USERID.toLowerCase());
   }
 
   isSelected(employee): boolean {
@@ -94,6 +95,14 @@ export class TeamComponent implements OnInit {
   showAlert(value: boolean, text: string) {
     this.alertVisible = value;
     this.alertText = text;
+  }
+
+  canEdit() {
+    if (this.auth.getCurrentUserId().toLowerCase() === this.selectedEmployee.USERID.toLowerCase()) {
+      return false;
+    } else {
+      return true;
+    }
   }
 
   isAdmin() {

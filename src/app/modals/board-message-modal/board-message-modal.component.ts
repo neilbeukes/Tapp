@@ -18,7 +18,7 @@ export class BoardMessageModalComponent implements OnInit {
     team: '',
     userId: '',
     userName: '',
-    date: this.formatter.format(this.calender.getToday()),
+    date: new Date().toString(),
     priority: false,
     subject: '',
     body: ''
@@ -27,22 +27,19 @@ export class BoardMessageModalComponent implements OnInit {
   edit = false;
 
   constructor(public activeModal: NgbActiveModal, private boardService: BoardService, private teamService: TeamService
-    , private calender: NgbCalendar, private formatter: NgbDateParserFormatter, private auth: AuthService) { }
+    , private formatter: NgbDateParserFormatter, private auth: AuthService) { }
 
   ngOnInit() {
   }
 
   postNewMessage() {
-
     if (this.edit) {
       this.updateMessage();
     } else {
       this.newMessage.userId = this.auth.getCurrentUserId();
       this.newMessage.userName = this.auth.getCurrentUserName();
       this.newMessage.team = this.teamService.getSelectedTeamAbr();
-      console.log(this.newMessage);
       this.boardService.add(this.newMessage).subscribe(response => {
-        console.log(response);
         this.activeModal.close();
       });
     }
@@ -55,7 +52,6 @@ export class BoardMessageModalComponent implements OnInit {
 
   updateMessage() {
     this.boardService.update(this.newMessage).subscribe(response => {
-      console.log(response);
       this.activeModal.close();
     });
   }

@@ -24,8 +24,7 @@ export class BoardComponent implements OnInit {
   isDataLoaded = false;
 
   constructor(private router: Router, private modalService: NgbModal, private boardService: BoardService,
-    private teamService: TeamService, private calender: NgbCalendar, private formatter: NgbDateParserFormatter,
-    private auth: AuthService) {
+    private teamService: TeamService, private auth: AuthService) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         if (this.auth.isAuthenticated()) {
@@ -48,9 +47,7 @@ export class BoardComponent implements OnInit {
   postNewMessage() {
     console.log('open modal');
     const modalRef = this.modalService.open(BoardMessageModalComponent);
-    // modalRef.componentInstance.setContent("Add team member", "Add");
     modalRef.result.then(result => {
-      // this.showAlert(true, result.alertText);
       this.getMessages();
     }).catch(err => {
       console.log('modal dissmisssed');

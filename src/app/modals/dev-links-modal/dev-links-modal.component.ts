@@ -23,6 +23,7 @@ export class DevLinksModalComponent implements OnInit {
   }
 
   submit() {
+    console.log('in submit');
       this.addLink();
   }
 

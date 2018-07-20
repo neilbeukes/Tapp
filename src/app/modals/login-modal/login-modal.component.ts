@@ -29,6 +29,7 @@ export class LoginModalComponent implements OnInit {
         this.alert = false;
       } else {
         this.alert = true;
+        this.loginButton = false;
       }
     });
   }

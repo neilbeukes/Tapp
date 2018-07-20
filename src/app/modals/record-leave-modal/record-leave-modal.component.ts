@@ -71,8 +71,11 @@ export class RecordLeaveModalComponent {
     const leaveObject = this.createleaveObject();
     console.log(leaveObject);
     this.leaveService.add(leaveObject).subscribe(response => {
-      console.log(response);
+      console.log('Leave add service: ' + response);
       this.activeModal.close();
+    });
+    this.leaveService.email(leaveObject).subscribe(responses => {
+      console.log('Email service: ' + responses);
     });
   }
 

@@ -18,7 +18,7 @@
       <strong>Upcoming leave</strong>
     </h1>
     <div class="row mt-4">
-      <div class="col-md-5">
+      <div class="col-md-6">
         <table class="table table-hover">
           <tbody>
             <tr class="active" *ngFor="let record of leaveRecords" (click)="setCalender(record)">
@@ -28,7 +28,7 @@
           </tbody>
         </table>
       </div>
-      <div class="col-md-5 ml-5">
+      <div class="col-md-4 ml-3">
         <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t">
         </ngb-datepicker>
 

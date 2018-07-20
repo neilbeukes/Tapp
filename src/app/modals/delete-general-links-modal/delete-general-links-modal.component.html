@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h4 class="modal-title">Remove recorded leave</h4>
+    <h4 class="modal-title">{{title}}</h4>
     <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -8,11 +8,11 @@
     <div class="dropdown" ngbDropdown>
       <button class="btn btn-secondary dropdown-toggle" type="button" id="linkdropdown" 
       data-toggle="dropdown" ngbDropdownToggle>
-      <span *ngIf="selectedLeave == null"> Select leave</span>
-      <span *ngIf="selectedLeave != null"> {{selectedLeave.fromDate}} to {{selectedLeave.toDate}}</span>
+      <span *ngIf="selectedLink == null"> Select Url</span>
+      <span *ngIf="selectedLink != null"> {{selectedLink.name}}</span>
       </button>
       <div class="dropdown-menu" ngbDropdownMenu>
-        <button class="dropdown-item" *ngFor="let leave of leave | deleteLeave : userId" (click)="setLeave(leave)">{{leave.fromDate}} to {{leave.toDate}}</button>
+        <button class="dropdown-item" *ngFor="let link of links" (click)="setLink(link)">{{link.name}}</button>
       </div>
     </div>
   </div>

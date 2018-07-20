@@ -19,7 +19,7 @@ export class DeleteleavemodalComponent {
   setContent(leave, userId: string) {
     this.leave = leave;
     this.userId = userId;
-    this.selectedLeave = leave[0];
+    // this.selectedLeave = leave[0];
   }
 
   close(response: boolean) {
