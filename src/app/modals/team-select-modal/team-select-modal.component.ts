@@ -1,5 +1,7 @@
+import { TeamService } from './../../service/team/team.service';
 import { Component} from '@angular/core';
-import { NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-team-select-modal',
@@ -8,7 +10,7 @@ import { NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 })
 export class TeamSelectModalComponent {
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal, private toastr: ToastrService) { }
   teams;
   selectedTeam;
   public isLoaded = false;
@@ -31,6 +33,7 @@ export class TeamSelectModalComponent {
   }
 
   save() {
+    this.toastr.success(this.selectedTeam.Name + ' preference saved', 'Team');
     this.activeModal.close(this.selectedTeam);
   }
 

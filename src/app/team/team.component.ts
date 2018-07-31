@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './../service/auth/auth.service';
 import { TeamService } from './../service/team/team.service';
 import { Component, OnInit, Injectable, Input } from '@angular/core';
@@ -15,14 +16,12 @@ import { ConfirmationModalComponent } from '../modals/confirmation-modal/confirm
 
 export class TeamComponent implements OnInit {
 
-  alertVisible = false;
-  alertText = '';
   employees;
   selectedEmployee;
   isDataLoaded = false;
 
   constructor(private service: TeammemberService, private modalService: NgbModal, private teamService: TeamService,
-    private auth: AuthService) { }
+    private auth: AuthService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.getTeamMembers();
@@ -45,7 +44,6 @@ export class TeamComponent implements OnInit {
     const modalRef = this.modalService.open(TeamMemberComponent);
     modalRef.componentInstance.setContent('Add team member', 'Add');
     modalRef.result.then(result => {
-      this.showAlert(true, result.alertText);
       this.getTeamMembers();
     }).catch(err => {
       console.log('modal dissmisssed');
@@ -57,7 +55,6 @@ export class TeamComponent implements OnInit {
     modalRef.componentInstance.setContent('Update team member', 'Update');
     modalRef.componentInstance.populateFields(this.selectedEmployee);
     modalRef.result.then(result => {
-      this.showAlert(true, result.alertText);
       this.getTeamMembers();
     }).catch(err => {
       console.log('modal dissmisssed');
@@ -87,14 +84,9 @@ export class TeamComponent implements OnInit {
 
   deleteTeamMember() {
     this.service.delete(this.selectedEmployee._id).subscribe(response => {
-      this.showAlert(true, 'Team member deleted successfully');
+      this.toastr.warning(this.selectedEmployee.FIRSTNAME + ' deleted successfully', 'Teammember');
       this.getTeamMembers();
     });
-  }
-
-  showAlert(value: boolean, text: string) {
-    this.alertVisible = value;
-    this.alertText = text;
   }
 
   canEdit() {
@@ -106,7 +98,7 @@ export class TeamComponent implements OnInit {
   }
 
   isAdmin() {
-    if (this.auth.getCurrentUserId().toLowerCase() === 'abnb559') {
+    if ((this.auth.getCurrentUserId().toLowerCase() === 'abnb559') || (this.auth.getCurrentUserId().toLowerCase() === 'abcj423')) {
       return false;
     } else {
       return true;

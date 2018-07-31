@@ -1,11 +1,10 @@
+import { ToastrService } from 'ngx-toastr';
 import { Message } from './../../service/board/Message';
 import { AuthService } from './../../service/auth/auth.service';
-import { BoardComponent } from './../../board/board.component';
 import { TeamService } from './../../service/team/team.service';
 import { BoardService } from './../../service/board/board.service';
-import { NgbModal, NgbActiveModal, NgbCalendar, NgbDateStruct, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
-import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 
 @Component({
   selector: 'app-board-message-modal',
@@ -14,7 +13,7 @@ import { NgbDate } from '@ng-bootstrap/ng-bootstrap/datepicker/ngb-date';
 })
 export class BoardMessageModalComponent implements OnInit {
 
-  newMessage: Message = {
+  message: Message = {
     team: '',
     userId: '',
     userName: '',
@@ -27,31 +26,37 @@ export class BoardMessageModalComponent implements OnInit {
   edit = false;
 
   constructor(public activeModal: NgbActiveModal, private boardService: BoardService, private teamService: TeamService
-    , private formatter: NgbDateParserFormatter, private auth: AuthService) { }
+    , private auth: AuthService, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
 
-  postNewMessage() {
+  postMessage() {
     if (this.edit) {
       this.updateMessage();
     } else {
-      this.newMessage.userId = this.auth.getCurrentUserId();
-      this.newMessage.userName = this.auth.getCurrentUserName();
-      this.newMessage.team = this.teamService.getSelectedTeamAbr();
-      this.boardService.add(this.newMessage).subscribe(response => {
-        this.activeModal.close();
-      });
+      this.newMessage();
     }
   }
 
   setContentEdit(message: Message) {
-    this.newMessage = message;
+    this.message = message;
     this.edit = true;
   }
 
   updateMessage() {
-    this.boardService.update(this.newMessage).subscribe(response => {
+    this.boardService.update(this.message).subscribe(response => {
+      this.toastr.success('Message updated successfully', 'Updated');
+      this.activeModal.close();
+    });
+  }
+
+  newMessage() {
+    this.message.userId = this.auth.getCurrentUserId();
+    this.message.userName = this.auth.getCurrentUserName();
+    this.message.team = this.teamService.getSelectedTeamAbr();
+    this.boardService.add(this.message).subscribe(response => {
+      this.toastr.success('New message posted successfully', 'Message');
       this.activeModal.close();
     });
   }

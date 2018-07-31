@@ -40,6 +40,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { DeleteleavemodalComponent } from './modals/delete-leave-modal/delete-leave-modal.component';
 import { GeneralLinksModalComponent } from './modals/general-links-modal/general-links-modal.component';
 import { DeleteGeneralLinksModalComponent } from './modals/delete-general-links-modal/delete-general-links-modal.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CalendarModule } from 'angular-calendar';
+import { ToastrModule } from 'ngx-toastr';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -72,8 +75,11 @@ export function tokenGetter() {
     DeleteGeneralLinksModalComponent
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
     FormsModule,
+    BrowserAnimationsModule,
+    CalendarModule.forRoot(),
     HttpClientModule,
     JwtModule.forRoot({
       config: {

@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from './../../service/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbDateStruct, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
@@ -34,9 +35,9 @@ export class RecordLeaveModalComponent {
 
   constructor(public activeModal: NgbActiveModal, calendar: NgbCalendar,
     private leaveService: LeaveService, private teamService: TeamService, private dateFormatter: NgbDateParserFormatter,
-    private auth: AuthService) {
+    private auth: AuthService, private toastr: ToastrService) {
     this.fromDate = calendar.getToday();
-    this.toDate = calendar.getNext(calendar.getToday(), 'd', 10);
+    this.toDate = calendar.getNext(calendar.getToday(), 'd', 5);
   }
 
   onDateSelection(date: NgbDateStruct) {
@@ -71,7 +72,7 @@ export class RecordLeaveModalComponent {
     const leaveObject = this.createleaveObject();
     console.log(leaveObject);
     this.leaveService.add(leaveObject).subscribe(response => {
-      console.log('Leave add service: ' + response);
+      this.toastr.success('Leave booked successfully', 'Leave');
       this.activeModal.close();
     });
     this.leaveService.email(leaveObject).subscribe(responses => {

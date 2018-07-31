@@ -13,6 +13,7 @@ export class LoginService {
   constructor(private modalService:  NgbModal, private authService: AuthService, private router: Router) { }
 
   login() {
+    this.router.navigate(['']);
     const myModel = this.modalService.open(LoginModalComponent);
     myModel.result.then(response => {
       this.router.navigate(['']);

@@ -1,5 +1,5 @@
+import { ToastrService } from 'ngx-toastr';
 import { LeaveService } from './../../service/leave/leave.service';
-import { DevLinksService } from './../../service/links/dev-links/dev-links.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 
@@ -14,7 +14,7 @@ export class DeleteleavemodalComponent {
   selectedLeave;
   userId;
 
-  constructor(public activeModal: NgbActiveModal, private leaveService: LeaveService) { }
+  constructor(public activeModal: NgbActiveModal, private leaveService: LeaveService, private toastr: ToastrService) { }
 
   setContent(leave, userId: string) {
     this.leave = leave;
@@ -28,6 +28,7 @@ export class DeleteleavemodalComponent {
     } else {
       this.leaveService.delete(this.selectedLeave._id).subscribe( res => {
         console.log(res);
+        this.toastr.success('Leave deleted successfully', 'Leave');
         this.activeModal.close(true);
       });
     }

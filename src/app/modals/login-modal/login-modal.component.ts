@@ -2,6 +2,7 @@ import { AuthService } from './../../service/auth/auth.service';
 import { User } from './../../service/login/user';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login-modal',
@@ -14,7 +15,7 @@ export class LoginModalComponent implements OnInit {
   alert = false;
   loginButton = false;
 
-  constructor(public activeModal: NgbActiveModal, private auth: AuthService) { }
+  constructor(public activeModal: NgbActiveModal, private auth: AuthService, private toastr: ToastrService) { }
 
   ngOnInit() {
     this.loginButton = false;
@@ -25,6 +26,7 @@ export class LoginModalComponent implements OnInit {
     this.loginButton = true;
     this.auth.authenticate(this.user, (response) => {
       if (response) {
+        this.toastr.success('You have successfully signed in', 'Signed in');
         this.activeModal.close(this.user);
         this.alert = false;
       } else {
