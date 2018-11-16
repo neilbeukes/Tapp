@@ -1,26 +1,31 @@
-import { Router } from '@angular/router';
-import { AuthService } from './../service/auth/auth.service';
-import { LoginService } from './../service/login/login.service';
-import { Component, OnInit } from '@angular/core';
-import { TeamService } from '../service/team/team.service';
+import { CookieService } from "ngx-cookie-service";
+import { Router } from "@angular/router";
+import { AuthService } from "../service/auth/auth.service";
+import { LoginService } from "../service/login/login.service";
+import { Component, OnInit } from "@angular/core";
+import { TeamService } from "../service/team/team.service";
 
 @Component({
-  selector: 'app-navbar',
-  templateUrl: './navbar.component.html',
-  styleUrls: ['./navbar.component.css']
+  selector: "app-navbar",
+  templateUrl: "./navbar.component.html",
+  styleUrls: ["./navbar.component.css"]
 })
 export class NavbarComponent implements OnInit {
-
   isCollapsed = false;
-  selectedTeam = '';
+  selectedTeam = "";
 
-  constructor(private teamService: TeamService, private loginService: LoginService,
-    private auth: AuthService, private router: Router) {
-  }
+  constructor(
+    private teamService: TeamService,
+    private cs: CookieService,
+    private loginService: LoginService,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    if (this.teamService.getSelectedTeamName() === '') {
-      this.changeTeam();
+    if (this.teamService.getSelectedTeamName() === "") {
+      this.cs.set("teamName", "Home loans");
+      this.cs.set("teamAbr", "HL");
     } else {
       this.selectedTeam = this.teamService.getSelectedTeamName();
     }
@@ -28,9 +33,9 @@ export class NavbarComponent implements OnInit {
 
   changeTeam() {
     this.teamService.changeTeam(() => {
-      console.log('updating team name');
+      console.log("updating team name");
       this.selectedTeam = this.teamService.getSelectedTeamName();
-      this.router.navigate(['']);
+      this.router.navigate([""]);
     });
   }
 
@@ -44,10 +49,9 @@ export class NavbarComponent implements OnInit {
 
   getCurrentUser(): string {
     if (this.auth.isAuthenticated()) {
-      return this.auth.getCurrentUserId() + ' : Logout';
+      return this.auth.getCurrentUserId() + " : Logout";
     } else {
-      return 'Login';
+      return "Login";
     }
   }
-
 }

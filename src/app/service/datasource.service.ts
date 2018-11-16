@@ -1,9 +1,10 @@
-import { environment } from './../../environments/environment';
-import { BadInput } from './../common/bad-input';
-import { NotFoundError } from './../common/not-fournd-error';
-import { AppError } from './../common/app-error';
+import { environment } from '../../environments/environment';
+import { BadInput } from '../common/bad-input';
+import { NotFoundError } from '../common/not-fournd-error';
+import { AppError } from '../common/app-error';
 import { Injectable } from '@angular/core';
-import { Observable, } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 export class DataService {
@@ -17,9 +18,9 @@ export class DataService {
   }
 
   getAll() {
-    return this.http.get(this.url);
-    // .map(Response => Response.json()) if you want to map the response
-    // .catchError(this.handleError)
+    return this.http.get(this.url).pipe(
+    map(Response => Response), // if you want to map the response
+    catchError(this.handleError));
   }
 
   getAllForTeam(team) {

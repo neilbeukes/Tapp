@@ -1,20 +1,19 @@
-import { MessageEdit } from './../service/board/MessageEdit';
-import { AuthService } from './../service/auth/auth.service';
-import { TeamService } from './../service/team/team.service';
-import { BoardService } from './../service/board/board.service';
-import { BoardMessageModalComponent } from './../modals/board-message-modal/board-message-modal.component';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { interval, Observable, Subscription } from 'rxjs';
+import { MessageEdit } from "../service/board/MessageEdit";
+import { AuthService } from "../service/auth/auth.service";
+import { TeamService } from "../service/team/team.service";
+import { BoardService } from "../service/board/board.service";
+import { BoardMessageModalComponent } from "../modals/board-message-modal/board-message-modal.component";
+import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Router, NavigationEnd } from "@angular/router";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { interval, Observable, Subscription } from "rxjs";
 
 @Component({
-  selector: 'app-board',
-  templateUrl: './board.component.html',
-  styleUrls: ['./board.component.css']
+  selector: "app-board",
+  templateUrl: "./board.component.html",
+  styleUrls: ["./board.component.css"]
 })
 export class BoardComponent implements OnInit, OnDestroy {
-
   messages: Array<MessageEdit>;
   messagesNormal: Array<MessageEdit>;
   messagesPriority: Array<MessageEdit>;
@@ -23,8 +22,13 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   isDataLoaded = false;
 
-  constructor(private router: Router, private modalService: NgbModal, private boardService: BoardService,
-    private teamService: TeamService, private auth: AuthService) {
+  constructor(
+    private router: Router,
+    private modalService: NgbModal,
+    private boardService: BoardService,
+    private teamService: TeamService,
+    private auth: AuthService
+  ) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
       if (e instanceof NavigationEnd) {
         if (this.auth.isAuthenticated()) {
@@ -40,11 +44,10 @@ export class BoardComponent implements OnInit, OnDestroy {
 
       // update board every 15 seconds
       if (this.inBoardRoute()) {
-        this.updater = interval(1000).subscribe((v) => {
+        this.updater = interval(60000).subscribe(v => {
           this.getMessages();
         });
       }
-
     }
   }
 
@@ -52,29 +55,32 @@ export class BoardComponent implements OnInit, OnDestroy {
     try {
       this.updater.unsubscribe();
     } catch (e) {
-      console.log('no subcription found');
+      console.log("no subcription found");
     }
   }
 
   inBoardRoute() {
-    return (this.router.url === '/board');
+    return this.router.url === "/board";
   }
 
   postNewMessage() {
-    console.log('open modal');
+    console.log("open modal");
     const modalRef = this.modalService.open(BoardMessageModalComponent);
-    modalRef.result.then(result => {
-      this.getMessages();
-    }).catch(err => {
-      console.log('modal dissmisssed');
-    });
+    modalRef.result
+      .then(result => {
+        this.getMessages();
+      })
+      .catch(err => {
+        console.log("modal dissmisssed");
+      });
   }
 
   getMessages() {
-    this.boardService.getAllForTeam(this.teamService.getSelectedTeamAbr()).subscribe(response => {
-      this.splitMessages(response);
-    }
-    );
+    this.boardService
+      .getAllForTeam(this.teamService.getSelectedTeamAbr())
+      .subscribe(response => {
+        this.splitMessages(response);
+      });
   }
 
   splitMessages(messages) {
@@ -107,7 +113,7 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   canEditMessage(message: MessageEdit) {
-    if ((message.userId === this.auth.getCurrentUserId())) {
+    if (message.userId === this.auth.getCurrentUserId()) {
       return true;
     } else {
       return false;
@@ -115,18 +121,20 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   editMessage(message: MessageEdit) {
-    console.log('open modal');
+    console.log("open modal");
     const modalRef = this.modalService.open(BoardMessageModalComponent);
     modalRef.componentInstance.setContentEdit(message);
-    modalRef.result.then(result => {
-      this.getMessages();
-    }).catch(err => {
-      console.log('modal dissmisssed');
-    });
+    modalRef.result
+      .then(result => {
+        this.getMessages();
+      })
+      .catch(err => {
+        console.log("modal dissmisssed");
+      });
   }
 
   isNewCard(message) {
-    const HOUR = (1000 * 60 * 60) * 3;
+    const HOUR = 1000 * 60 * 60 * 3;
     const anHourAgo = Date.now() - HOUR;
 
     return new Date(message.date) > new Date(anHourAgo);

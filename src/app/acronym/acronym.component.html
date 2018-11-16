@@ -1,0 +1,43 @@
+<div *ngIf="dataLoaded" class="container mt-5">
+  <div class="row">
+    <div class="col">
+      <div class="jumbotron">
+        <div class="row ml-5">
+          <h4 style="padding-bottom: 10px;">
+            <b>Acronym buster</b>
+          </h4>
+          <div class="col-md-1 mb-4 ml-4">
+            <button class="btn btn-success" (click)="addAcronyms()">
+              <i class="fa fa-plus"></i> Add </button>
+          </div>
+          <div class="col-md-3 mb-4 ml-4">
+            <input [(ngModel)]="searchText" class="form-control" type="search" placeholder="Search">
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="row">
+            <div class="col-6 mt-2 ml-5">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Acronym</th>
+                    <th scope="col">Full name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let acronym of acronyms | searchacronym : searchText">
+                    <td>{{acronym.abr}}</td>
+                    <td>{{acronym.Name}}</td>
+                    <button class="btn btn-outline-danger" (click)="deleteAcronymsConfirmation(acronym._id)">
+                      <i class="fa fa-trash"></i>
+                    </button>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

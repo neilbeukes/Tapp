@@ -1,8 +1,8 @@
 import { Pipe, PipeTransform } from "@angular/core";
 @Pipe({
-  name: "search"
+  name: "searchacronym"
 })
-export class SearchPipe implements PipeTransform {
+export class SearchAcronymPipe implements PipeTransform {
   transform(items: any[], searchText: string): any[] {
     if (!items) {
       return [];
@@ -12,7 +12,7 @@ export class SearchPipe implements PipeTransform {
     }
     searchText = searchText.toLowerCase();
     return items.filter(it => {
-      return it.NAME.toLowerCase().includes(searchText);
+      return it.abr.toLowerCase().includes(searchText);
     });
   }
 }

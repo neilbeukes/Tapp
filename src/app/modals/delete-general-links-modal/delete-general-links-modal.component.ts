@@ -1,19 +1,22 @@
-import { ToastrService } from 'ngx-toastr';
-import { GeneralLinksService } from './../../service/links/general-links/general-links.service';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { Component } from '@angular/core';
+import { ToastrService } from "ngx-toastr";
+import { GeneralLinksService } from "../../service/links/general-links/general-links.service";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-delete-general-links-modal',
-  templateUrl: './delete-general-links-modal.component.html',
-  styleUrls: ['./delete-general-links-modal.component.css']
+  selector: "app-delete-general-links-modal",
+  templateUrl: "./delete-general-links-modal.component.html",
+  styleUrls: ["./delete-general-links-modal.component.css"]
 })
 export class DeleteGeneralLinksModalComponent {
-
-  constructor(public activeModal: NgbActiveModal, private generalLinksService: GeneralLinksService, private toastr: ToastrService) { }
+  constructor(
+    public activeModal: NgbActiveModal,
+    private generalLinksService: GeneralLinksService,
+    private toastr: ToastrService
+  ) {}
 
   links;
-  title = 'Delete';
+  title = "Delete";
   selectedLink;
 
   setContent(title, links) {
@@ -26,7 +29,7 @@ export class DeleteGeneralLinksModalComponent {
       this.activeModal.close(response);
     } else {
       this.generalLinksService.delete(this.selectedLink._id).subscribe(res => {
-        this.toastr.success('Link deleted successfully', 'Link');
+        this.toastr.success("Link deleted successfully", "Link");
         this.activeModal.close(true);
       });
     }
@@ -35,5 +38,4 @@ export class DeleteGeneralLinksModalComponent {
   setLink(link) {
     this.selectedLink = link;
   }
-
 }

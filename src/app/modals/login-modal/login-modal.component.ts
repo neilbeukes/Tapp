@@ -1,5 +1,5 @@
-import { AuthService } from './../../service/auth/auth.service';
-import { User } from './../../service/login/user';
+import { AuthService } from '../../service/auth/auth.service';
+import { User } from '../../service/login/user';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';

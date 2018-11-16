@@ -1,24 +1,19 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { DataService } from '../../datasource.service';
+import { ApplicationService } from "./../application/dev-links.service";
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { DataService } from "../../datasource.service";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DevLinksService extends DataService {
-
-  constructor(http: HttpClient) {
-    super('/links/dev', http);
+  constructor(http: HttpClient, private appService: ApplicationService) {
+    super("/links/dev", http);
   }
 
-  getApplications(): Array<any> {
-    return [
-      { id: 1, name: 'EOML' },
-      { id: 2, name: 'QMS' },
-      { id: 3, name: 'PPHL' },
-      { id: 4, name: 'CVA' },
-      { id: 5, name: 'MLS' }
-    ];
+  getApplications(callback) {
+    this.appService.getAll().subscribe(response => {
+      callback(response);
+    });
   }
-
 }

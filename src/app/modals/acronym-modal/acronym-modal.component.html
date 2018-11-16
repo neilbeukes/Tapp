@@ -1,0 +1,20 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form id="form" (submit)="submit()" ngNativeValidate>
+    <div class="form-group">
+      <input required type="text" class="form-control" [(ngModel)]="acronym.abr" id="abr" placeholder="abr" name="abr">
+    </div>
+    <div class="form-group">
+      <input required type="text" class="form-control" [(ngModel)]="acronym.Name" id="Name" placeholder="Full name" name="Full name">
+    </div>
+  </form>
+</div>
+<div class="modal-footer">
+  <button type="submit" form="form" class="btn btn-success">
+    <i class="fa fa-check"></i> Save</button>
+</div>

@@ -1,8 +1,8 @@
 import { ToastrService } from 'ngx-toastr';
-import { Message } from './../../service/board/Message';
-import { AuthService } from './../../service/auth/auth.service';
-import { TeamService } from './../../service/team/team.service';
-import { BoardService } from './../../service/board/board.service';
+import { Message } from '../../service/board/Message';
+import { AuthService } from '../../service/auth/auth.service';
+import { TeamService } from '../../service/team/team.service';
+import { BoardService } from '../../service/board/board.service';
 import { NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 

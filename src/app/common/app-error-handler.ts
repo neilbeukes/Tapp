@@ -1,5 +1,5 @@
-import { AuthService } from './../service/auth/auth.service';
-import { LoginService } from './../service/login/login.service';
+import { AuthService } from '../service/auth/auth.service';
+import { LoginService } from '../service/login/login.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorHandler, Inject, Injector, Injectable } from '@angular/core';
@@ -30,7 +30,7 @@ export class AppErrorHandler implements ErrorHandler {
                 this.toastrService.error('Please login', 'Oops');
                 console.log(error);
                 this.loginService.login();
-            } if (error.status === 401) {
+            } else if (error.status === 401) {
                 this.toastrService.error('Please login', 'Oops');
                 console.log(error);
                 this.authService.logout();

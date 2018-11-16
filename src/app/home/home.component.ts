@@ -1,5 +1,5 @@
 import { Router, NavigationEnd } from '@angular/router';
-import { TeamService } from './../service/team/team.service';
+import { TeamService } from '../service/team/team.service';
 import { Component, OnInit } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import { TeamSelectModalComponent } from '../modals/team-select-modal/team-select-modal.component';

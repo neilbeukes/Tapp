@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { LeaveService } from './../../service/leave/leave.service';
+import { LeaveService } from '../../service/leave/leave.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 

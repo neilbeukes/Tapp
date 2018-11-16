@@ -1,4 +1,4 @@
-import { GeneralLinksModalComponent } from './../../modals/general-links-modal/general-links-modal.component';
+import { GeneralLinksModalComponent } from '../../modals/general-links-modal/general-links-modal.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Component, OnInit } from '@angular/core';
 import { GeneralLinksService } from '../../service/links/general-links/general-links.service';

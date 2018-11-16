@@ -1,22 +1,22 @@
-<div class="container mt-5">
+<div class="container mt-5" *ngIf="dataLoaded">
   <div class="jumbotron">
     <div class="row mb-4">
-    <div class="col-md-2">
+      <div class="col-md-2">
         <h4>
-            <b>Dev Links</b>
-          </h4>
-    </div>
-        <div class="col-md-1">
-            <button class="btn btn-success" (click)="addLink()"> 
-              <i class="fa fa-plus"></i> Add </button>
-          </div>
-          <div class="col-md-1">
-            <button class="btn btn-danger" (click)="deleteLink()">
-              <i class="fa fa-trash"></i> Delete</button>
-          </div>
-          <div class="col-md-5 ml-5">
-            <label *ngIf="alertVisible" class="alert alert-success">{{alertText}}</label>
-          </div>
+          <b>Dev Links</b>
+        </h4>
+      </div>
+      <div class="col-md-1">
+        <button class="btn btn-success" (click)="addLink()">
+          <i class="fa fa-plus"></i> Add </button>
+      </div>
+      <div class="col-md-1">
+        <button class="btn btn-danger" (click)="deleteLink()">
+          <i class="fa fa-trash"></i> Delete</button>
+      </div>
+      <div class="col-md-5 ml-5">
+        <label *ngIf="alertVisible" class="alert alert-success">{{alertText}}</label>
+      </div>
     </div>
     <div class="row">
       <div class="col">
@@ -44,8 +44,8 @@
                 <a class="nav-link env-select" (click)="selectEnv('Dev')" [ngClass]="{active: isEnvSelected('Dev')}">Dev</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link env-select" (click)="selectEnv('Tools')" [ngClass]="{active: isEnvSelected('Tools')}">Tools</a>
-                </li>
+                <a class="nav-link env-select" (click)="selectEnv('Tools')" [ngClass]="{active: isEnvSelected('Tools')}">Tools</a>
+              </li>
             </ul>
           </div>
           <div class="card-body mr-auto">
@@ -54,7 +54,7 @@
             </h4>
             <ul>
               <li *ngFor="let link of links | devLinks : selectedApplication.name : selectedEnv">
-                <p class="card-text link-style" >
+                <p class="card-text link-style">
                   <a (click)="openExternalLink(link.url)" target="_blank">{{link.name}}</a>
                 </p>
               </li>

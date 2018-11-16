@@ -24,10 +24,12 @@
       </a>
       <a class="nav-item nav-link" routerLink="leave">Leave</a>
       <a class="nav-item nav-link" routerLink="board">Board</a>
+      <a class="nav-item nav-link" routerLink="ab">Acronym Buster</a>
     </div>
   </div>
   <div class="form-inline">
-    <button class="btn btn-outline-tapp my-2 my-sm-0" type="submit" (click)="changeTeam()"> <i class="fa fa-edit"></i> {{selectedTeam}}</button>
-    <button class="btn btn-outline-tapp my-2 my-sm-0 ml-3" type="submit" (click)="login()">{{getCurrentUser()}}</button>       
+    <button class="btn btn-outline-tapp my-2 my-sm-0" type="submit" (click)="changeTeam()">
+      <i class="fa fa-edit"></i> {{selectedTeam}}</button>
+    <button class="btn btn-outline-tapp my-2 my-sm-0 ml-3" type="submit" (click)="login()">{{getCurrentUser()}}</button>
   </div>
 </nav>

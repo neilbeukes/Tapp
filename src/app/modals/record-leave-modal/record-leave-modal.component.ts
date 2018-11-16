@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { AuthService } from './../../service/auth/auth.service';
+import { AuthService } from '../../service/auth/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal, NgbDateStruct, NgbCalendar, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { LeaveService } from '../../service/leave/leave.service';
