@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { NgbModal, NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { DevLinksService } from '../../service/links/dev-links/dev-links.service';
@@ -11,7 +12,7 @@ export class DevLinksModalComponent implements OnInit {
 
   title = 'Add Link for the selected enviroment';
   devLink: any = {};
-  constructor(public activeModal: NgbActiveModal, private devLinksService: DevLinksService) { }
+  constructor(public activeModal: NgbActiveModal, private devLinksService: DevLinksService, private toastr: ToastrService) { }
 
   ngOnInit() {
   }
@@ -23,11 +24,13 @@ export class DevLinksModalComponent implements OnInit {
   }
 
   submit() {
+    console.log('in submit');
       this.addLink();
   }
 
   addLink() {
     this.devLinksService.add(this.devLink).subscribe(res => {
+      this.toastr.success('Link added successfully', 'Link');
       this.activeModal.close({ alertText: 'Link added' });
     });
   }

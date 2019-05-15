@@ -5,20 +5,20 @@
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <form id="form" (submit)="postMessage()" ngNativeValidate>
       <div class="form-group">
-        <input type="text" class="form-control" [(ngModel)]="newMessage.subject" id="subject" placeholder="Subject" name="subject">
+        <input required type="text" class="form-control" [(ngModel)]="message.subject" id="subject" placeholder="Subject" name="subject">
       </div>
       <div class="form-group">
-        <textarea type="text" class="form-control" [(ngModel)]="newMessage.body" id="body" placeholder="Type your message here..." name="body"></textarea>
+        <textarea required type="text" class="form-control" [(ngModel)]="message.body" id="body" placeholder="Type your message here..." name="body"></textarea>
       </div>
       <div class="form-group">
         <label class="form-check-label" for="priority">Is this message High Priority?</label>
-        <input type="checkbox" class="form-check-input ml-2" [(ngModel)]="newMessage.priority" id="priority" name="priority">
+        <input type="checkbox" class="form-check-input ml-2" [(ngModel)]="message.priority" id="priority" name="priority">
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="submit" (click)="postNewMessage()" class="btn btn-success">
+    <button type="submit" form="form" class="btn btn-success">
       <i class="fa fa-check"></i> Post</button>
   </div>

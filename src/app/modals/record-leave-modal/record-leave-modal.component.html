@@ -11,7 +11,7 @@
       <input type="radio" name="options" id="option1" (click)="singleDay=true;"> Single day
     </label>
     <label class="btn btn-secondary" [ngClass]="{active: ! singleDay}">
-      <input type="radio" name="options" id="option2" (click)="singleDay=false;"> More then one day
+      <input type="radio" name="options" id="option2" (click)="singleDay=false;"> More than one day
     </label>
   </div>
   <div *ngIf="singleDay">

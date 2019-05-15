@@ -8,7 +8,8 @@
     <div class="dropdown" ngbDropdown>
       <button class="btn btn-secondary dropdown-toggle" type="button" id="linkdropdown" 
       data-toggle="dropdown" ngbDropdownToggle>
-      {{selectedLeave.fromDate}} to {{selectedLeave.toDate}}
+      <span *ngIf="selectedLeave == null"> Select leave</span>
+      <span *ngIf="selectedLeave != null"> {{selectedLeave.fromDate}} to {{selectedLeave.toDate}}</span>
       </button>
       <div class="dropdown-menu" ngbDropdownMenu>
         <button class="dropdown-item" *ngFor="let leave of leave | deleteLeave : userId" (click)="setLeave(leave)">{{leave.fromDate}} to {{leave.toDate}}</button>

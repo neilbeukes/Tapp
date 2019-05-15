@@ -1,43 +1,60 @@
-<div class="container mt-5">
-  <div class="jumbotron">
-    <div class="row">
-      <div class="col-md-3">
-        <button class="btn btn-success btn-block" (click)="recordLeave()">
-          <h6>
-            <i class="fa fa-plane"></i> Record Leave</h6>
-        </button>
-      </div>
-      <div class="col-md-3 ml-3">
-        <button class="btn btn-danger btn-block" (click)="deleteLeave()">
-          <h6>
-            <i class="fa fa-ban"></i> Delete Leave</h6>
-        </button>
+<div class="jumbotron mt-3 mb-2 ml-5 mr-5">
+  <div class="row mb-4 justify-content-end">
+    <div class="col-md-2">
+      <button class="btn btn-success btn-block" (click)="recordLeave()">
+        <h6>
+          <i class="fa fa-plane"></i> Record Leave</h6>
+      </button>
+    </div>
+    <div class="col-md-2 ml-2">
+      <button class="btn btn-danger btn-block" (click)="deleteLeave()">
+        <h6>
+          <i class="fa fa-ban"></i> Delete Leave</h6>
+      </button>
+    </div>
+    <div class="col-md-2 ml-2">
+      <button class="btn btn-info btn-info" (click)="getReport()">
+        <h6>
+          <i class="fa fa-info"></i> Get CSV report</h6>
+      </button>
+    </div>
+  </div>
+  <hr style="background-color:#e65c00;">
+  <div class="row text-center mt-4 mb-3">
+    <div class="col-md-4">
+      <div class="btn-group">
+        <div class="btn btn-tapp" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
+          Previous
+        </div>
+        <div class="btn btn-outline-tapp" mwlCalendarToday [(viewDate)]="viewDate">
+          Today
+        </div>
+        <div class="btn btn-tapp" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate">
+          Next
+        </div>
       </div>
     </div>
-    <h1 class="display-4 mt-3">
-      <strong>Upcoming leave</strong>
-    </h1>
-    <div class="row mt-4">
-      <div class="col-md-5">
-        <table class="table table-hover">
-          <tbody>
-            <tr class="active" *ngFor="let record of leaveRecords" (click)="setCalender(record)">
-              <th>{{record.name}}</th>
-              <td>{{record.fromDate}} to {{record.toDate}}</td>
-            </tr>
-          </tbody>
-        </table>
+    <div class="col-md-4 ">
+      <h3>{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</h3>
+    </div>
+    <div class="col-md-4">
+      <div class="btn-group">
+        <div class="btn btn-tapp" (click)="view = 'month'" [class.active]="view === 'month'">
+          Month
+        </div>
+        <div class="btn btn-tapp" (click)="view = 'week'" [class.active]="view === 'week'">
+          Week
+        </div>
       </div>
-      <div class="col-md-5 ml-5">
-        <ngb-datepicker #dp (select)="onDateSelection($event)" [displayMonths]="2" [dayTemplate]="t">
-        </ngb-datepicker>
-
-        <ng-template #t let-date="date" let-focused="focused">
-          <span class="custom-day" [class.focused]="focused" [class.range]="isFrom(date) || isTo(date) || isInside(date) || isHovered(date)"
-            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date" (mouseleave)="hoveredDate = null">
-            {{ date.day }}
-          </span>
-        </ng-template>
+    </div>
+  </div>
+  <div class="row mt-5 ml-3 mr-3 mb-3">
+    <div class="col-lg-12">
+      <div [ngSwitch]="view">
+        <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events">
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events">
+        </mwl-calendar-week-view>
       </div>
     </div>
   </div>

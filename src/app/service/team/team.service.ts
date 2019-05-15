@@ -36,7 +36,6 @@ export class TeamService extends DataService {
 
   changeTeam(callback) {
     return this.getAll().subscribe(response => {
-      console.log('getAll teams returned');
       this.showModal(response).then(() => {
         callback();
       });

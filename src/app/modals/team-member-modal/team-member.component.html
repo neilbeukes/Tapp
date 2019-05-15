@@ -5,36 +5,39 @@
   </button>
 </div>
 <div class="modal-body">
-  <form>
+  <form id="form" (submit)="submit()" ngNativeValidate>
     <div class="form-group">
-      <input type="email" class="form-control" [(ngModel)]="teamMember.NAME" id="name" placeholder="Name" name="name">
+      <input required type="text" class="form-control" [(ngModel)]="teamMember.NAME" id="name" placeholder="Name" name="name">
     </div>
     <div class="form-group">
-      <input type="email" class="form-control" [(ngModel)]="teamMember.SURNAME" id="surname" placeholder="Surname" name="surname">
+      <input required type="text" class="form-control" [(ngModel)]="teamMember.SURNAME" id="surname" placeholder="Surname" name="surname">
     </div>
     <div class="form-group">
-      <input type="email" class="form-control" [(ngModel)]="teamMember.EMAIL" id="email" placeholder="Email" name="email">
+      <input required type="email" class="form-control" [(ngModel)]="teamMember.EMAIL" id="email" placeholder="Email" name="email">
     </div>
     <div class="form-group">
-      <input type="number" class="form-control" [(ngModel)]="teamMember.CELL" id="cell" name="cell" placeholder="Cellphone number">
+      <input required type="number" class="form-control" [(ngModel)]="teamMember.CELL" id="cell" name="cell" placeholder="Cellphone number">
     </div>
     <div class="form-group">
-      <input type="number" class="form-control" [(ngModel)]="teamMember.EXT" id="ext" name="ext" placeholder="Ext">
+        <input required type="number" class="form-control" [(ngModel)]="teamMember.JABBER" id="jabber" name="jabber" placeholder="Jabber number">
+      </div>
+    <div class="form-group">
+      <input required type="number" class="form-control" [(ngModel)]="teamMember.EXT" id="ext" name="ext" placeholder="Ext">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="teamMember.USERID" id="userid" name="userID" placeholder="UserID (AB number)">
+      <input required type="text" class="form-control" [(ngModel)]="teamMember.USERID" id="userid" name="userID" placeholder="UserID (AB number)">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="teamMember.BDAY" id="birthday" name="birthday" placeholder="Birthday (eg. 07-APR)">
+      <input required type="text" class="form-control" [(ngModel)]="teamMember.BDAY" id="birthday" name="birthday" placeholder="Birthday (eg. 07-APR)">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="teamMember.KIN" id="kin" name="kin" placeholder="Next of Kin">
+      <input required type="text" class="form-control" [(ngModel)]="teamMember.KIN" id="kin" name="kin" placeholder="Next of Kin">
     </div>
     <div class="form-group">
-      <input type="number" class="form-control" [(ngModel)]="teamMember.KINNUMBER" id="kinNumber" name="kinNumber" placeholder="Next of Kin contact details">
+      <input required type="number" class="form-control" [(ngModel)]="teamMember.KINNUMBER" id="kinNumber" name="kinNumber" placeholder="Next of Kin contact details">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="teamMember.LAPTOP" id="laptop" name="laptop" placeholder="Laptop Serial Number (PCXXXXXX)">
+      <input required type="text" class="form-control" [(ngModel)]="teamMember.LAPTOP" id="laptop" name="laptop" placeholder="Laptop Serial Number (PCXXXXXX)">
     </div>
     <div class="form-group">
       <label class="form-check-label" for="gModem">Do you have a 3G Modem?</label>
@@ -43,6 +46,6 @@
   </form>
 </div>
 <div class="modal-footer">
-  <button type="submit" (click)="submit()" class="btn btn-success">
+  <button type="submit" form="form" class="btn btn-success">
     <i class="fa fa-check"></i> {{button}}</button>
 </div>

@@ -5,16 +5,16 @@
   </button>
 </div>
 <div class="modal-body">
-  <form>
+  <form id="form" (submit)="submit()" ngNativeValidate>
     <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="devLink.name" id="name" placeholder="Name" name="name">
+      <input required type="text" class="form-control" [(ngModel)]="devLink.name" id="name" placeholder="Name" name="name">
     </div>
     <div class="form-group">
-      <input type="text" class="form-control" [(ngModel)]="devLink.url" id="url" placeholder="Url" name="url">
+      <input required type="url" class="form-control" [(ngModel)]="devLink.url" id="url" placeholder="Url" name="url">
     </div>
   </form>
 </div>
 <div class="modal-footer">
-  <button type="submit" (click)="submit()" class="btn btn-success">
+  <button type="submit" form="form" class="btn btn-success">
     <i class="fa fa-check"></i> Save</button>
 </div>

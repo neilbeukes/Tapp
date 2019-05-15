@@ -1,3 +1,4 @@
+import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
 import { NgModel } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -16,12 +17,12 @@ export class DeleteLinksModalComponent {
   selectedEnv;
   selectedApp;
 
-  constructor(public activeModal: NgbActiveModal, private devLinksService: DevLinksService) { }
+  constructor(public activeModal: NgbActiveModal, private devLinksService: DevLinksService, private toastr: ToastrService) { }
 
   setContent(title, links, selectedEnv, selectedApp) {
     this.title = title;
     this.links = links;
-    this.selectedLink = links[0];
+    // this.selectedLink = links[0];
     this.selectedApp = selectedApp;
     this.selectedEnv = selectedEnv;
   }
@@ -31,6 +32,7 @@ export class DeleteLinksModalComponent {
       this.activeModal.close(response);
     } else {
       this.devLinksService.delete(this.selectedLink._id).subscribe(res => {
+        this.toastr.success('Link deleted successfully', 'Link');
         this.activeModal.close(true);
       });
     }

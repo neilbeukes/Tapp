@@ -19,6 +19,6 @@
   
 </div>
 <div class="modal-footer">
-  <button type="submit" (click)="submit()" class="btn btn-success">
+  <button [disabled]="loginButton" type="submit" (click)="submit()" class="btn btn-success">
     <i class="fa fa-check"></i> login</button>
 </div>
