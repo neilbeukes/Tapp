@@ -8,7 +8,7 @@ Team application is a system to help manage our team where I currently work. It 
 - Message board for trasmitting information to the team
 - Abreviation bustor to help those new employees get to grip with all the terms in our team.
 
-##Features
+## Features
 
 - Built with Angular, Nodejs and MongoDB
 - Scalable, every team will see only their teams information on the application, so it can be used in multiple teams.
