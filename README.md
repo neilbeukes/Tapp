@@ -1,5 +1,20 @@
 # Tapp
 
+Team application is a system to help manage our team where I currently work. It includes:
+
+- Managing information for everyone in the team
+- Booking leave 
+- Sharing environment urls so everyone in the team knows where to get what.
+- Message board for trasmitting information to the team
+- Abreviation bustor to help those new employees get to grip with all the terms in our team.
+
+##Features
+
+- Built with Angular, Nodejs and MongoDB
+- Scalable, every team will see only their teams information on the application, so it can be used in multiple teams.
+- UI is built using Bootstrap and grid layout, so Responsive for various screeen sizes.
+- Uses JWT to secure data flowing between front-end and back-end. 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.0.
 
 ## Development server
