@@ -6,7 +6,7 @@ Team application is a system to help manage our team where I currently work. It 
 - Booking leave 
 - Sharing environment urls so everyone in the team knows where to get what.
 - Message board for trasmitting information to the team
-- Abreviation bustor to help those new employees get to grip with all the terms in our team.
+- Abbreviation bustor to help those new employees get to grip with all the terms in our team.
 
 ## Features
 
